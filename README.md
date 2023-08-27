@@ -37,11 +37,14 @@ My personal day to day app
 - Planner
     - Show WeekBased
     - ~Show last 3 days~
-    - Add notes to a day completion
     - ~Better UI~
-    - Create an task
+    - ~Create an task~
     - Unique Tasks
-    - Can be checked other days?
+    - Weekly Tasks
+    - Editing tasks / Deleting
+    - Generating ID on create
+    - show only availables for that day
+    - Good color when everything is completed
 
 - Projects
     - Tasks for each project

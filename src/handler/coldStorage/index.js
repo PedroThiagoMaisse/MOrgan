@@ -2,20 +2,30 @@ import { writable } from 'svelte/store';
 
 const coldStorage = {}
 
+
 function constructBranch(key, value) {
+    console.log(key, value)
+
     coldStorage[key] = {
         isCS: true,
         data: value.data,
-        watcher: writable(value.data)
+        watcher: writable(value.data),
+        
+        changeBranch: function (variable) {
+            this.data = variable
+            this.watcher.update((n) => n = variable)
+            setCS()
+        },
+
+        post: function (Object) {
+            this.watcher.update((n) => n = n.push(Object))
+            setCS()
+        }
     }
 
-    coldStorage[key].subscribe =  coldStorage[key].watcher.subscribe
-
-    coldStorage[key].changeBranch = function (variable) {
-        coldStorage[key].data = variable
-        coldStorage[key].watcher.update((n) => n = variable)
-        setCS()
-    }
+    coldStorage[key].subscribe = coldStorage[key].watcher.subscribe
+    
+    console.log(coldStorage)
 }
 
 function initiate() {
@@ -31,7 +41,8 @@ initiate()
 
 function setCS() {
     for (const [key, value] of Object.entries(coldStorage)) {
-        localStorage[key] = JSON.stringify({data: value, isCS: true})
+        const obj = { ...value, isCS: true }
+        localStorage[key] = JSON.stringify(obj)
     }
 }
 

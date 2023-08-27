@@ -1,6 +1,13 @@
 <script>
+    import { coldStorage } from "../../handler/coldStorage";
     let eventDialog
 
+    let newTask = {
+        name: null,
+        frequency: null,
+        firstDate: null,
+        completedIn: []
+    }
 
     function closeDialog() {
         eventDialog.close()
@@ -9,6 +16,11 @@
     function newEvent() {
         eventDialog.show()
     }
+
+    function go() {
+        newTask.id = 'T000'
+        coldStorage.Events.post(newTask)
+    }
 </script>
 
 <dialog bind:this={eventDialog} class="card">
@@ -16,20 +28,20 @@
     <form>
 
         <p class="label">Nome:</p>
-        <input style="margin-bottom: 8px;"/>
+        <input style="margin-bottom: 8px;" bind:value={newTask.name}/>
 
         <p class="label">Frequência:</p>
-        <select style="margin-bottom: 8px;"> 
+        <select style="margin-bottom: 8px;" bind:value={newTask.frequency}> 
             <option value="D"> Diário </option>
         </select>
 
         <p class="label">Começa dia:</p>
-        <input type="date" style="margin-bottom: 8px;"/>
+        <input type="date" style="margin-bottom: 8px;" bind:value={newTask.firstDate}/>
 
         <div class="cardActions">
             <button class="cancel" on:click={closeDialog}> Cancelar </button>
             
-            <button class="go"> Criar </button>
+            <button class="go" on:click={go}> Criar </button>
         </div>
     </form>
 </dialog>
