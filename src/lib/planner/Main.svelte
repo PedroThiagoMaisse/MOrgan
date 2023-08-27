@@ -1,29 +1,15 @@
 <script>
     import CreateNewTask from './createNewTask.svelte';
     import {removeDaysFromDate} from './helper'
+    import { coldStorage } from '../../handler/coldStorage';
 
     let backDayNumbers = 3
+    let events
 
-    const events = [{
-        id: 'A001',
-        frequency: 'D',
-        firstDate: '24/8/2023',
-        completedIn: [],
-        name: 'testing'
-    }, {
-        id: 'A002',
-        frequency: 'D',
-        firstDate: '24/8/2023',
-        completedIn: ['25/8/2023'],
-        name: 'testing'
-    }, {
-        id: 'A003',
-        frequency: 'D',
-        firstDate: '24/8/2023',
-        completedIn: [],
-        name: 'testing',
-        done: true
-    }]
+    coldStorage.Events.subscribe((value) => {
+        events = value
+    })
+
 
     const _date = new Date
     const date = `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`

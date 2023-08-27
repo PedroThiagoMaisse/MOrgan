@@ -17,7 +17,7 @@ My personal day to day app
     - ~Text~
 
 - Cold storage
-    - Manter objetos quando a pessoa sai da page
+    - ~Manter objetos quando a pessoa sai da page~
     - Puxar eles de API, e subir-los
 
 - Organization
