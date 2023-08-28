@@ -18,7 +18,7 @@ My personal day to day app
 
 - Cold storage
     - ~Manter objetos quando a pessoa sai da page~
-    - UPDATE 
+    - ~UPDATE~ 
     - Puxar eles de API, e subir-los
 
 - Organization

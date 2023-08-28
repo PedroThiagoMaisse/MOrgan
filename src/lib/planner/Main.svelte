@@ -2,17 +2,18 @@
     import CreateNewTask from './createNewTask.svelte';
     import {removeDaysFromDate} from './helper'
     import { coldStorage } from '../../handler/coldStorage';
+    import {onMount} from 'svelte'
 
     let backDayNumbers = 3
-    let events
+    let events = []
+    const _date = new Date
+    const date = `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`
+    let days = buildDays(date, backDayNumbers)
 
     coldStorage.Events.subscribe((value) => {
         events = value
+        days = buildDays(date, backDayNumbers)
     })
-
-
-    const _date = new Date
-    const date = `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`
 
 
     function buildDays(date, n) {
@@ -72,7 +73,7 @@
     <CreateNewTask/>
 </div>
 <main>
-    {#each buildDays(date, backDayNumbers) as card}
+    {#each days as card}
         <div class="card">
             <p class='detail'>{card.date}</p>
             <p class='title'>{card.n > 0 ? `${card.n} Dia(s) atrás` : 'Hoje'}</p>
