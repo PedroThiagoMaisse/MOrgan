@@ -26,6 +26,19 @@ function constructBranch(key, value) {
             this.watcher.update((n) => n = filteredArray)
             this.data = filteredArray
             setCS()
+        },
+
+        patch: function (value) {
+            const array = JSON.parse(JSON.stringify(this.data))
+            for (let index = 0; index < array.length; index++) {
+                let element = array[index];
+                if (value.id == element.id) {
+                    element = value
+                }
+            }
+            this.watcher.update((n) => n = array)
+            this.data = array
+            setCS()
         }
     }
 

@@ -51,8 +51,13 @@
     function handleClick(value, date) {
         events.forEach(element => {
             if (element.id === value) {
-                element.completedIn.push(date)
-                //TODO: push
+                const obj = element
+                if(obj.completedIn.includes(date)) {
+                   obj.completedIn = obj.completedIn.filter((value)=> {return value !== date})
+                } else {
+                    obj.completedIn.push(date)
+                }
+                coldStorage.Events.patch(obj)
             }
         });
     
@@ -79,7 +84,7 @@
             <p class='title'>{card.n > 0 ? `${card.n} Dia(s) atrás` : 'Hoje'}</p>
             {#each card.array as element, index (index)}
                 <div style="display: flex; justify-content: space-between; padding-right: 16px">
-                    <p class="text"> {element.name} {index} 
+                    <p class="text"> {element.name} 
                         <input type="checkbox" bind:checked={element.done} on:click={() => handleClick (element.id, card.date)}/> 
                     </p> 
                     <button class="cancel" on:click={() => dele(element.id)}> x </button>

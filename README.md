@@ -36,10 +36,11 @@ My personal day to day app
     - .MD Views
 
 - Planner
-    - Show WeekBased
+    - Show WeekBased - show what day of the week and entire week
     - ~Show last 3 days~
     - ~Better UI~
     - ~Create an task~
+    - ~Checking task~
     - Unique Tasks
     - Weekly Tasks
     - ~Deleting Tasks~
