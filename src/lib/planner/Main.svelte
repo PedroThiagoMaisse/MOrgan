@@ -57,6 +57,11 @@
     
     }
 
+    function dele(value) {
+        coldStorage.Events.delete(value)
+        console.log(value)
+    }
+
 </script>
 
 <div style="display: flex;">
@@ -72,13 +77,29 @@
             <p class='detail'>{card.date}</p>
             <p class='title'>{card.n > 0 ? `${card.n} Dia(s) atrás` : 'Hoje'}</p>
             {#each card.array as element, index (index)}
-                <p class="text"> {element.name} {index} <input type="checkbox" bind:checked={element.done} on:click={() => handleClick (element.id, card.date)}/> </p>
+                <div style="display: flex; justify-content: space-between; padding-right: 16px">
+                    <p class="text"> {element.name} {index} 
+                        <input type="checkbox" bind:checked={element.done} on:click={() => handleClick (element.id, card.date)}/> 
+                    </p> 
+                    <button class="cancel" on:click={() => dele(element.id)}> x </button>
+                </div>
             {/each}
         </div>
     {/each}
 </main>
 
 <style>
+    .cancel{
+        z-index: 5;
+        position: relative;
+        font-size: 12px;
+        line-height: 100%;
+        height: 20px;
+        width: 20px;
+        padding: 0px 0px 2px 0px;
+        background-color: transparent;
+    }
+
     .card{
         margin-left: 32px;
         margin-top: 32px;

@@ -19,6 +19,13 @@ function constructBranch(key, value) {
         post: function (Object) {
             this.watcher.update((n) => n = n.push({... Object, id: generateNextId(this.data)}))
             setCS()
+        },
+
+        delete: function (id) {
+            const filteredArray = this.data.filter((value) => {return id !== value.id})
+            this.watcher.update((n) => n = filteredArray)
+            this.data = filteredArray
+            setCS()
         }
     }
 

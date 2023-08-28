@@ -54,6 +54,10 @@ input, select, button {
   margin-left: auto;
 }
 
+dialog{
+  z-index: 10;
+}
+
 .detail{
   line-height: 135%;
   margin: 0px 0px -6px 0px;

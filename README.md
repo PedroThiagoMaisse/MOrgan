@@ -18,6 +18,7 @@ My personal day to day app
 
 - Cold storage
     - ~Manter objetos quando a pessoa sai da page~
+    - UPDATE 
     - Puxar eles de API, e subir-los
 
 - Organization
@@ -41,7 +42,7 @@ My personal day to day app
     - ~Create an task~
     - Unique Tasks
     - Weekly Tasks
-    - Editing tasks / Deleting
+    - ~Deleting Tasks~
     - ~Generating ID on create~
     - show only availables for that day
     - Good color when everything is completed
