@@ -1,11 +1,10 @@
 import { writable } from 'svelte/store';
+import { generateNextId } from './helper';
 
 const coldStorage = {}
 
 
 function constructBranch(key, value) {
-    console.log(key, value)
-
     coldStorage[key] = {
         isCS: true,
         data: value.data,
@@ -18,14 +17,12 @@ function constructBranch(key, value) {
         },
 
         post: function (Object) {
-            this.watcher.update((n) => n = n.push(Object))
+            this.watcher.update((n) => n = n.push({... Object, id: generateNextId(this.data)}))
             setCS()
         }
     }
 
     coldStorage[key].subscribe = coldStorage[key].watcher.subscribe
-    
-    console.log(coldStorage)
 }
 
 function initiate() {

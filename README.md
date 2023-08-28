@@ -42,7 +42,7 @@ My personal day to day app
     - Unique Tasks
     - Weekly Tasks
     - Editing tasks / Deleting
-    - Generating ID on create
+    - ~Generating ID on create~
     - show only availables for that day
     - Good color when everything is completed
 
