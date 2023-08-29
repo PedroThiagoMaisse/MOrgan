@@ -6,28 +6,33 @@
     import { coldStorage } from '../../handler/coldStorage';
     import {onMount} from 'svelte'
 
-    let backDayNumbers = 3
     let events = []
     const _date = new Date
     const date = `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`
-    let days = buildDays(date, backDayNumbers)
+    let days = buildDays(date)
 
     coldStorage.Events.subscribe((value) => {
         events = value
-        days = buildDays(date, backDayNumbers)
+        days = buildDays(date)
     })
 
 
-    function buildDays(date, n) {
+    function buildDays(date) {
         const array = []
-        for (let index = 1; index <= n; index++) {
-            const [data, weekDay]  = removeDaysFromDate(date, n - index)
+        const currentDay = _date.getDay()
+
+        for (let index = 0; index <= currentDay; index++) {
+            const [data, weekDay] = removeDaysFromDate(date, currentDay - index)
             const [cardData, num] = generateCard(data)
-            array.push({array: cardData, isCompleted: num , date: data, n: n-index, weekDay})
-            
+            array.push({array: cardData, isCompleted: num , date: data, n: currentDay - index, weekDay})
         }
 
-        console.log(array)
+        for (let index = (currentDay + 1); index <= 6; index++) {
+            const [data, weekDay] = removeDaysFromDate(date, currentDay - index)
+            const [cardData, num] = generateCard(data)
+            array.push({array: cardData, isCompleted: num , date: data, n: currentDay - index, weekDay})
+        }
+
         return array
     }
 
@@ -74,31 +79,41 @@
 
     function dele(value) {
         coldStorage.Events.delete(value)
-        console.log(value)
     }
 
 </script>
 
 <div style="display: flex;">
-    <div style="text-align: left; padding-left: 32px;">
+    <!-- <div style="text-align: left; padding-left: 32px;">
         Número de dias para mostrar: <br>
         <input bind:value={backDayNumbers} name="Número de dias para mostrar" class="input"/>
-    </div>
+    </div> -->
     <CreateNewTask/>
 </div>
 <main>
     {#each days as card}
-        <div class="card {card.isCompleted ? 'completed' : ''}">
-            <p class='detail'>{card.date}, {card.weekDay} </p>
+        <div class="card {card.isCompleted ? 'completed' : ''} 
+        {card.n === 0 ? 'Today' : ''} 
+        {card.n > 0 && !card.isCompleted?`delayed`  : ''}">
+            <p class='detail'>{card.date},
+                {card.n === 0 ? 'Hoje' : ''}
+                {card.n > 0 ? `${card.n} Dia(s) atrás`  : ''}
+                {card.n < 0 ? `Em ${card.n * -1} Dia(s)` : ''}
+            </p>
             <p class='title'> 
-                {card.n > 0 ? `${card.n} Dia(s) atrás` : 'Hoje'}
+                {card.weekDay}
             </p>
             {#each card.array as element, index (index)}
-                <div style="display: flex; justify-content: space-between; padding-right: 16px">
-                    <p class="text"> {element.name} 
-                        <input type="checkbox" bind:checked={element.done} on:click={() => handleClick (element.id, card.date)}/> 
-                    </p> 
-                    <button class="cancel" on:click={() => dele(element.id)}> x </button>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text"> 
+                        {element.name} 
+                    </p>
+                    <div style="display: flex; flex-direction: column; justify-content: center">
+                        <div style="position: relative; bottom: 4px">
+                            <input  class="checkbox" type="checkbox" bind:checked={element.done} on:click={() => handleClick (element.id, card.date)}/> 
+                            <button class="cancel" on:click={() => dele(element.id)}> x </button>
+                        </div>
+                    </div>
                 </div>
             {/each}
         </div>
@@ -106,24 +121,47 @@
 </main>
 
 <style>
-    .completed .detail{
+    .delayed .title{
+        color: red
+    }
+
+    .Today{
+        background-color: #303030;
+    }
+
+    .checkbox{
+        scale: 0.8;
+    } 
+
+    .completed .title{
         color: green
     }
 
+    .text {
+        font-size: 12px;
+        max-width: 60px;
+        width: 70px;
+    }
+
     .cancel{
+        bottom: 2px;
+        scale: 0.8;
         z-index: 5;
         position: relative;
-        font-size: 12px;
+        font-size: 16px;
         line-height: 100%;
         height: 20px;
         width: 20px;
-        padding: 0px 0px 2px 0px;
+        padding: 0px 0px 02px 0px;
         background-color: transparent;
     }
 
     .card{
-        margin-left: 32px;
+        padding: 16px 16px 16px 16px;
+        margin-left: 16px;
         margin-top: 32px;
+        min-width: 80px;
+        width: 120px;
     }
 
     main{
