@@ -47,7 +47,8 @@ My personal day to day app
     - ~Deleting Tasks~
     - ~Generating ID on create~
     - ~show only availables for that day~
-    - Good color when everything is completed
+    - ~Good color when everything is completed~
+    - Organize functions
 
 - Projects
     - Tasks for each project

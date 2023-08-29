@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     import CreateNewTask from './createNewTask.svelte';
     import {removeDaysFromDate} from './helper'
     import { coldStorage } from '../../handler/coldStorage';
@@ -19,17 +21,20 @@
     function buildDays(date, n) {
         const array = []
         for (let index = 1; index <= n; index++) {
-            const data = removeDaysFromDate(date, n - index)
-            array.push({array: generateCard(data), date: data, n: n-index})
+            const [data, weekDay]  = removeDaysFromDate(date, n - index)
+            const [cardData, num] = generateCard(data)
+            array.push({array: cardData, isCompleted: num , date: data, n: n-index, weekDay})
             
         }
 
+        console.log(array)
         return array
     }
 
     function generateCard(dato) {
         const EventsForTheDay = []
         const internEvents = JSON.parse(JSON.stringify(events))
+        let completed = 0
         for (let index = 0; index < internEvents.length; index++) {
             const element = internEvents[index];
             let flip = false
@@ -41,13 +46,15 @@
             __date = new Date(__date[1] + '-' + __date[0] + '-' + __date[2])
             if (flip && __date >= new Date(element.firstDate)) {
                 if (element.completedIn.includes(dato)) {
-                    element.done = true}
+                    element.done = true
+                    completed ++
+                }
                 else {element.done = false}
                 EventsForTheDay.push(element)
             }
         }
 
-        return EventsForTheDay
+        return [ EventsForTheDay, completed === EventsForTheDay.length ]
     }
 
     function handleClick(value, date) {
@@ -81,9 +88,11 @@
 </div>
 <main>
     {#each days as card}
-        <div class="card">
-            <p class='detail'>{card.date}</p>
-            <p class='title'>{card.n > 0 ? `${card.n} Dia(s) atrás` : 'Hoje'}</p>
+        <div class="card {card.isCompleted ? 'completed' : ''}">
+            <p class='detail'>{card.date}, {card.weekDay} </p>
+            <p class='title'> 
+                {card.n > 0 ? `${card.n} Dia(s) atrás` : 'Hoje'}
+            </p>
             {#each card.array as element, index (index)}
                 <div style="display: flex; justify-content: space-between; padding-right: 16px">
                     <p class="text"> {element.name} 
@@ -97,6 +106,10 @@
 </main>
 
 <style>
+    .completed .detail{
+        color: green
+    }
+
     .cancel{
         z-index: 5;
         position: relative;
