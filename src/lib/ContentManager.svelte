@@ -1,5 +1,5 @@
 <script>
-    export let routes, selected, changeRoute
+    export let routes, selected
 </script>
 
 <main>

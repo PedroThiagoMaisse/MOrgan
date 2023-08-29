@@ -48,7 +48,7 @@
 
 <button 
     on:click={newEvent}
-    style="font-size: 14px; padding: 0px 12px 0px 12px; height: 36px; margin-top:auto; margin-left: 36px"
+    style="font-size: 14px; padding: 0px 12px 0px 12px; height: 36px; margin-top:auto; "
 > + Criar nova Task </button>
 
 

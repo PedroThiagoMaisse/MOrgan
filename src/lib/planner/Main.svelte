@@ -2,35 +2,63 @@
 // @ts-nocheck
 
     import CreateNewTask from './createNewTask.svelte';
-    import {removeDaysFromDate} from './helper'
+    import {removeDaysFromDate, getFirstDayOffWeek, addDaysFromDate, toBRDate, toWeekDayName, getRelativeDay} from './helper'
     import { coldStorage } from '../../handler/coldStorage';
     import {onMount} from 'svelte'
 
     let events = []
-    const _date = new Date
+    let _date = new Date()
+    const offset = _date.getTimezoneOffset()
+    _date = new Date(_date.toISOString().split('T')[0])
+    _date = new Date(_date.getTime() + (offset * 60 * 1000))
     const date = `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`
-    let days = buildDays(date)
+    let firstDayThisWeek = getFirstDayOffWeek(_date)
+    let lastDayThisWeek = addDaysFromDate(firstDayThisWeek, 6)
 
+    let selectedWeek = 0
+    let days = buildDays(date, selectedWeek)
+    
     coldStorage.Events.subscribe((value) => {
         events = value
-        days = buildDays(date)
+        days = buildDays(date, selectedWeek)
     })
 
+    // Getting strings and Status (for html build)
+    // change remove day to add day
 
-    function buildDays(date) {
+    function buildDays(date, n) {
         const array = []
         const currentDay = _date.getDay()
+        const firstDate = addDaysFromDate(firstDayThisWeek, n*7)
+        const lastDate = addDaysFromDate(lastDayThisWeek, n*7)
 
-        for (let index = 0; index <= currentDay; index++) {
-            const [data, weekDay] = removeDaysFromDate(date, currentDay - index)
-            const [cardData, num] = generateCard(data)
-            array.push({array: cardData, isCompleted: num , date: data, n: currentDay - index, weekDay})
-        }
+        const isCurrentOrPastWeek = _date >= firstDate
+        // Get first day of the week
+        // If day first <= >= last
+        
+        // Change flip
 
-        for (let index = (currentDay + 1); index <= 6; index++) {
-            const [data, weekDay] = removeDaysFromDate(date, currentDay - index)
-            const [cardData, num] = generateCard(data)
-            array.push({array: cardData, isCompleted: num , date: data, n: currentDay - index, weekDay})
+
+        for (let index = 0; index <= 6; index++) {
+            const data = addDaysFromDate(firstDayThisWeek, index + (n * 7))
+            const weekDay = data.getDay()
+            const [cardData, isCompleted] = generateCard(toBRDate(data))
+            const obj ={
+                array: cardData, 
+                date: toBRDate(data), 
+                n: currentDay - index, 
+                weekDay: toWeekDayName(weekDay), 
+                isCompleted, 
+                relative: getRelativeDay(_date,data),
+                isToday: _date.getTime() === data.getTime()
+            } 
+
+            if(isCurrentOrPastWeek && weekDay < currentDay) {
+                obj.notCompleted = !isCompleted
+            }
+
+            array.push(obj)
+            // Se o flip tiver ativo, colocar em verde ou vermelho a depender do caso
         }
 
         return array
@@ -77,28 +105,34 @@
     
     }
 
+    function changeWeek(n) {
+        selectedWeek = n + selectedWeek
+        days = buildDays(date, selectedWeek)
+    }
+
     function dele(value) {
         coldStorage.Events.delete(value)
     }
 
 </script>
 
-<div style="display: flex;">
+<div class="bar">
     <!-- <div style="text-align: left; padding-left: 32px;">
         Número de dias para mostrar: <br>
         <input bind:value={backDayNumbers} name="Número de dias para mostrar" class="input"/>
     </div> -->
+    <button on:click={() => {changeWeek(-1)}}> {'<'} </button>
     <CreateNewTask/>
+    
+    <button on:click={() => {changeWeek(1)}}> {'>'} </button>
 </div>
 <main>
     {#each days as card}
         <div class="card {card.isCompleted ? 'completed' : ''} 
-        {card.n === 0 ? 'Today' : ''} 
-        {card.n > 0 && !card.isCompleted?`delayed`  : ''}">
+        {card.isToday ? 'Today' : ''}
+        {card.notCompleted?`delayed`  : ''}">
             <p class='detail'>{card.date},
-                {card.n === 0 ? 'Hoje' : ''}
-                {card.n > 0 ? `${card.n} Dia(s) atrás`  : ''}
-                {card.n < 0 ? `Em ${card.n * -1} Dia(s)` : ''}
+                {card.relative}
             </p>
             <p class='title'> 
                 {card.weekDay}
@@ -121,6 +155,12 @@
 </main>
 
 <style>
+    .bar{
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0px 0px 16px;
+    }
+
     .delayed .title{
         color: red
     }

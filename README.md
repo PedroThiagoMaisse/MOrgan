@@ -38,6 +38,7 @@ My personal day to day app
 - Planner
     - add fire + number of concurrently days
     - ~Show WeekBased - show what day of the week and entire week~
+    - ~Show another week~
     - ~Show last 3 days~
     - ~Better UI~
     - ~Create an task~
