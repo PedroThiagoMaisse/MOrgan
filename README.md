@@ -47,8 +47,9 @@ My personal day to day app
     - ~Generating ID on create~
     - ~show only availables for that day~
     - ~Good color when everything is completed~
+    - Use real dates (f)
     - Organize functions
-    - Unique Tasks, pra depois
+    - Unique Tasks
     - add fire + number of concurrently days
 
 - Projects

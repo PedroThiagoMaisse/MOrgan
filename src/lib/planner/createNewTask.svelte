@@ -1,7 +1,7 @@
 <script>
     import { coldStorage } from "../../handler/coldStorage";
     let eventDialog
-    const week = ['Dom','Seg','Ter','Qui','Qua','Sex','Sab']
+    const week = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
 
     let newTask = {
         name: null,
@@ -20,7 +20,6 @@
     }
 
     function go() {
-        console.log(newTask)
         coldStorage.Events.post(newTask)
     }
 </script>
