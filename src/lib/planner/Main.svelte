@@ -65,13 +65,20 @@
     }
 
     function generateCard(dato) {
+        let _dato = dato.split('/')
+        _dato = new Date(_dato[1]+'/'+_dato[0]+'/'+_dato[2])
         const EventsForTheDay = []
+        const weekDays = ['Dom','Seg','Ter','Qui','Qua','Sex','Sab']
         const internEvents = JSON.parse(JSON.stringify(events))
         let completed = 0
         for (let index = 0; index < internEvents.length; index++) {
             const element = internEvents[index];
             let flip = false
             if(element.frequency == 'D') {
+                flip = true
+            }
+
+            if(element.frequency == 'S' && element.frequencyDetails[weekDays[_dato.getDay()]] === '') {
                 flip = true
             }
 

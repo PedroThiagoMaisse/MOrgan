@@ -36,20 +36,20 @@ My personal day to day app
     - .MD Views
 
 - Planner
-    - add fire + number of concurrently days
     - ~Show WeekBased - show what day of the week and entire week~
     - ~Show another week~
     - ~Show last 3 days~
     - ~Better UI~
     - ~Create an task~
     - ~Checking task~
-    - Unique Tasks
-    - Weekly Tasks
+    - ~Weekly Tasks~
     - ~Deleting Tasks~
     - ~Generating ID on create~
     - ~show only availables for that day~
     - ~Good color when everything is completed~
     - Organize functions
+    - Unique Tasks, pra depois
+    - add fire + number of concurrently days
 
 - Projects
     - Tasks for each project
