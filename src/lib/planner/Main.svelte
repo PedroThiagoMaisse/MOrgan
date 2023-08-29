@@ -37,7 +37,9 @@
                 flip = true
             }
 
-            if (flip) {
+            let __date = dato.split('/')
+            __date = new Date(__date[1] + '-' + __date[0] + '-' + __date[2])
+            if (flip && __date >= new Date(element.firstDate)) {
                 if (element.completedIn.includes(dato)) {
                     element.done = true}
                 else {element.done = false}
