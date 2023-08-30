@@ -15,10 +15,10 @@ routes.set( [
         name: 'main',
         list: [
             // {name: 'Tester', component: tester},
+            {name: 'QuickNotes', component: quicknotes},
             { name: 'Planner', component: planner },
             { name: 'Projects', component: projects },
             // {name: 'Calendar', component: calendar},
-            {name: 'QuickNotes', component: quicknotes},
         ]
     },
     {

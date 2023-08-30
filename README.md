@@ -25,13 +25,19 @@ My personal day to day app
     - Better readme
     - Clean old Archives
     - Organize archives
+    - Create the "olive" project
 
 - Login
     - Saving key to pc
     - cryptografing data to coldStore
 
 - QuickNotes
-    - Different notes
+    -~ Object Reading Navbar~
+    -~ Changing selected~
+    -~ Replicating change in main screen~
+    - Getting / posting data to coldStorage with loop in 15 seg
+    -~ Organization ~
+    -~ Different notes~
     - Saving dates, number of char
     - .MD Views
 
