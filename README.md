@@ -35,9 +35,17 @@ My personal day to day app
     -~ Object Reading Navbar~
     -~ Changing selected~
     -~ Replicating change in main screen~
-    - Getting / posting data to coldStorage with loop in 15 seg
-    -~ Organization ~
     -~ Different notes~
+    -~ Organization ~
+    - ESTUDARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR, to travado em como fazer isso
+    - acompanhar aonde ela estava com o cursos, conseguir alterar ele a vontade
+    - manter ele em 2 modelos, um html para visualização e um texto puro para memória
+    - Passar preenchendo o tutorial com os casos
+
+    - Getting / posting data to coldStorage with loop in 15 seg
+    - Create new things
+    - 
+    - UX/UI
     - Saving dates, number of char
     - .MD Views
 

@@ -19,7 +19,7 @@
         border-width: 0px 1px 0px 0px;
         border-style: solid;
         border-color: gray;
-        width: 200px;
+        width: 279px;
         height: 100%;
     }
 </style>

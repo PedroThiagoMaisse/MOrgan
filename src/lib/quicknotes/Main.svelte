@@ -1,14 +1,17 @@
 <script> 
+    import { onMount } from "svelte";
     import Navbar from "./nav/Main.svelte";
     import { selected, filesTree, filesArray } from "./shared";
     let r = {}
     let variable = ''
+    let generic = null
 
     selected.subscribe((value) => {
         for (let index = 0; index < filesArray.length; index++) {
             const element = filesArray[index];
             if(element.id === value) {
                 r = element
+                // @ts-ignore
                 variable = element.data
                 change()
             }
@@ -16,6 +19,7 @@
     });
 
     function change(value) {
+        console.log(value)
         // variable = variable.replaceAll('\n', '<div>').replaceAll('<b>', '')
         const array = variable.split('<div>')
             // console.log(variable)
@@ -56,11 +60,18 @@
             variable = str
         }
     }
+    function Aa(value) {
+        console.log(value)
+        console.log('deu')
+    }
+    console.log(generic)
+    // const range = generic.createTextRange()
+    // console.log(range)
 </script>
 
 <main>
     <Navbar/>
-    <div class="textField" contenteditable="true" bind:innerHTML={variable} on:input={(value) => {change(value)}}>
+    <div class="textField" contenteditable="true" bind:innerHTML={variable} bind:this={generic} on:keydown|preventDefault={(value) => {change(value)}} on:focus={Aa}>
         {r.data}
     </div>
 </main>
