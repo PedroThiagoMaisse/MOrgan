@@ -39,12 +39,12 @@ My personal day to day app
     -~ Organization ~
     - Saving current Html
     -~Get caret position every change (https://jsfiddle.net/TjXEG/900/)~
-        - BUG when there is an empty line the system doesnt work
+        - BUG when there is an empty line the system doesnt work 
     - Mark current caret with token
     - Pass from HTML to simples text, save simple text
     - Do all fancy trading things
     - ~Change caret position (https://jsfiddle.net/vgmbdpa5/10/) to the marked~
-        - BUG Only can change to end of line
+        - BUG Only can change to end of line >>> mirar p/ o text dentro da div antes de settar
     - only change the current line
 
     - Getting / posting data to coldStorage with loop in every change
