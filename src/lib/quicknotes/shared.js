@@ -1,10 +1,11 @@
 import { writable } from 'svelte/store';
 import { buildFileTree } from './helper';
 
-const selected = writable('')
+const selected = writable('T00')
 
 const filesArray = [
-    {name: 'Main', type: 'folder', id: 'B00', data: [], parent: null},
+    { name: 'Main', type: 'folder', id: 'B00', data: [], parent: null },
+    { name: 'Teste', type: 'file', id: 'T00', data: `<div> KKK </div><div>## Título secundário</div>`, parent: 'B00' },
     {name: 'Tutorial', type: 'folder', id: 'B01', data: [], parent: 'B00' },
     {name: 'Headers e Cores', type: 'file', id: 'B02', data: `<div># Título Principal</div><div>## Título secundário</div><div>### Título de secção</div><div>Texto Normal</div><div>! Vermelho</div><div>!! Verde</div>`, parent: 'B01'},
     {name: 'Lista', type: 'file', id: 'B03', data: `<div> - el </div>`, parent: 'B01'},

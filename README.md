@@ -37,14 +37,19 @@ My personal day to day app
     -~ Replicating change in main screen~
     -~ Different notes~
     -~ Organization ~
-    - ESTUDARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR, to travado em como fazer isso
-    - acompanhar aonde ela estava com o cursos, conseguir alterar ele a vontade
-    - manter ele em 2 modelos, um html para visualização e um texto puro para memória
-    - Passar preenchendo o tutorial com os casos
+    - Saving current Html
+    -~Get caret position every change (https://jsfiddle.net/TjXEG/900/)~
+        - BUG when there is an empty line the system doesnt work
+    - Mark current caret with token
+    - Pass from HTML to simples text, save simple text
+    - Do all fancy trading things
+    - ~Change caret position (https://jsfiddle.net/vgmbdpa5/10/) to the marked~
+        - BUG Only can change to end of line
+    - only change the current line
 
-    - Getting / posting data to coldStorage with loop in 15 seg
+    - Getting / posting data to coldStorage with loop in every change
     - Create new things
-    - 
+    
     - UX/UI
     - Saving dates, number of char
     - .MD Views

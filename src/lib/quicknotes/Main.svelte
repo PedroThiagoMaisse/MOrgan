@@ -13,65 +13,77 @@
                 r = element
                 // @ts-ignore
                 variable = element.data
-                change()
+                // change()
             }
         }
     });
 
-    function change(value) {
-        console.log(value)
-        // variable = variable.replaceAll('\n', '<div>').replaceAll('<b>', '')
-        const array = variable.split('<div>')
-            // console.log(variable)
+    function setCaret(line, position) {
+        var el = generic
+        var range = document.createRange();
+        var sel = window.getSelection();
+        console.log(el.childNodes[line])
+        range.setStart(el.childNodes[line], position);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
 
-        const subs = [
-            {call: '#', style: 'font-size: 36px; font-weight: 600', name: 'has'},
-            {call: '##', style: 'font-size: 32px; font-weight: 600', name: 'has2'},
-            {call: '###', style: 'font-size: 26px; font-weight: 600', name: 'has3'},
-            {call: '!', style: 'color: red', name: 'has4'},
-            {call: '!!', style: 'color: green', name: 'has5'},
-            {call: '~', style: 'text-decoration: solid; text-decoration-color: #FAFAFA;text-decoration-line: line-through; text-decoration-skip: spaces;', name: 'has6'},
-        ]
-
-        let str = ''
-        let flip = false
-
-        for (let index = 1; index < array.length; index++) {
-            let element = array[index].trim()
-            element = element.replaceAll('</div>', '')
-            for (let index = 0; index < subs.length; index++) {
-                const obj = subs[index];
-                const span = `<span style="${obj.style}" class="${obj.name}"> ${obj.prepond || ''}`
-
-                if(element.indexOf(obj.call + '&nbsp;') === 0 || element.indexOf(obj.call + ' ') === 0 ) {
-                    flip = true
-                    element = `${span} ${element} </span>`
-                }
-                 if(element.indexOf(`class="${obj.name}"`) !== -1 && element.indexOf(obj.call) == -1){
-                    flip = true
-                    element = element.slice(element.indexOf('>') + 1).replaceAll('</span>', '')
-                }
+    function getCaretPosition(element) {
+        var caretOffset = 0;
+        var doc = element.ownerDocument || element.document;
+        var win = doc.defaultView || doc.parentWindow;
+        var sel;
+        if (typeof win.getSelection != "undefined") {
+            sel = win.getSelection();
+            if (sel.rangeCount > 0) {
+                var range = win.getSelection().getRangeAt(0);
+                var preCaretRange = range.cloneRange();
+                preCaretRange.selectNodeContents(element);
+                preCaretRange.setEnd(range.endContainer, range.endOffset);
+                caretOffset = preCaretRange.toString().length;
             }
+        } else if ( (sel = doc.selection) && sel.type != "Control") {
+            console.log('aq')
+            var textRange = sel.createRange();
+            var preCaretTextRange = doc.body.createTextRange();
+            preCaretTextRange.moveToElementText(element);
+            preCaretTextRange.setEndPoint("EndToEnd", textRange);
+            caretOffset = preCaretTextRange.text.length;
+        }
+        return caretOffset;
+    }
 
-            str += `\n<div>${element}</div>`
+    async function change(value) {
+        variable = variable.replaceAll('<br><br>', '<div><br></div>')
+        const startPosition = getCaretPosition(generic)
+        const html = variable
+
+        const array = html.replaceAll('<div>', '').split('</div>')
+        array.pop()
+        let realPosition = []
+
+        let count = 0
+        for (let index = 0; index < array.length && !realPosition.length; index++) {
+            const element = array[index].trim().replaceAll('<br>', '')
+            const positionsInLine = element.length + 1
+            const allPassedPositions = positionsInLine + count
+            console.log(allPassedPositions, startPosition)
+            if(allPassedPositions >= startPosition) {
+                realPosition = [index, startPosition - count] 
+            }
+            count += positionsInLine
         }
-            
-        if(flip) {
-            variable = str
-        }
+
+        console.log(html)
+        console.log(realPosition)
+        setCaret(realPosition[0], 1)
     }
-    function Aa(value) {
-        console.log(value)
-        console.log('deu')
-    }
-    console.log(generic)
-    // const range = generic.createTextRange()
-    // console.log(range)
 </script>
 
 <main>
     <Navbar/>
-    <div class="textField" contenteditable="true" bind:innerHTML={variable} bind:this={generic} on:keydown|preventDefault={(value) => {change(value)}} on:focus={Aa}>
+    <div class="textField" contenteditable="true" bind:innerHTML={variable} bind:this={generic} on:keyup={(value) => {change(value)}}>
         {r.data}
     </div>
 </main>
