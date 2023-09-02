@@ -40,13 +40,16 @@ My personal day to day app
     - Salvar o HTML atual
     -~Get caret position every change (https://jsfiddle.net/TjXEG/900/)~
         - ~BUG Quando tem uma line vazia isso só n funciona~
-    - Organização
-    - Loop por cada elemento
-    - Markar a posição atual do caret
+    - ~Organização~
+    - ~Loop por cada elemento~
+    - ~Marcar a posição atual do caret~
     - Passar de html para texto simples, guardar isso
-    - Jogar as classes CSS
+    - ~Jogar as classes CSS~
+    - ~Limpar as classes que não existem mais~
     - ~Change caret position (https://jsfiddle.net/vgmbdpa5/10/) to the marked~
         - ~BUG Só muda para o final da linha >>> mirar p/ dentro do elemento de texto~
+    - ~Executar on start~
+    - ~Não deixar sub repetir~
     - Só executar a função na linha atual
 
     - Postar as informações só a cada x segundos
@@ -54,6 +57,8 @@ My personal day to day app
     
     - UX/UI
     - Salvar a última data de modificação
+    - Separar o quando o elemento é um sub repetido
+
 
 - Planner
     - ~Show WeekBased - show what day of the week and entire week~

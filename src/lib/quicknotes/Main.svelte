@@ -6,14 +6,15 @@
     let variable = ''
     let generic = null
 
-    selected.subscribe((value) => {
+    selected.subscribe(async (value) => {
         for (let index = 0; index < filesArray.length; index++) {
             const element = filesArray[index];
             if(element.id === value) {
                 r = element
                 // @ts-ignore
                 variable = element.data
-                // change()
+                // variable = await htmlToMD(variable)
+                change()
             }
         }
     });
@@ -43,7 +44,6 @@
                 caretOffset = preCaretRange.toString().length;
             }
         } else if ( (sel = doc.selection) && sel.type != "Control") {
-            console.log('aq')
             var textRange = sel.createRange();
             var preCaretTextRange = doc.body.createTextRange();
             preCaretTextRange.moveToElementText(element);
@@ -72,14 +72,68 @@
         return realPosition
     }
 
+    async function htmlToMD (html, n) {
+        let newHtml = html
+
+        let array = generic.childNodes
+
+        let subArray = [
+            {tag: '#', style: {fontSize: '46px', fontWeight: '800'}},
+            {tag: '##', style: {fontSize: '36px', fontWeight: '800'}},
+            {tag: '###', style: {fontSize: '26px', fontWeight: '800'}},
+            {tag: '!', style: {color: 'red'}},
+            {tag: '!!', style: {color: 'green'}},
+        ]
+
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index];
+            const str = element.innerHTML
+            let attributes = element.getAttribute("subs") ? element.getAttribute("subs").split(',') : []
+
+            attributes.forEach(att => {
+                console.log(str)
+                if (!str.includes(att)) {
+                    const filtered =  subArray.filter((value) => {return att !== value.tag})
+                    for (const [key, value] of Object.entries(filtered[0].style)) {
+                        element.style[key] = null
+                    }
+                    element.setAttribute("subs", attributes.join(',').replaceAll("," + filtered[0].tag, ''))
+                    attributes = element.getAttribute("subs") ? element.getAttribute("subs").split(',') : []
+                }
+            });
+
+            for (let i = 0; i < subArray.length; i++) {
+                const sub = subArray[i];
+                if (str.includes(sub.tag) && !attributes.includes(sub.tag)) {
+                    for (const [key, value] of Object.entries(sub.style)) {
+                        element.style[key] = value
+                    }
+                    element.setAttribute("subs", attributes + "," + sub.tag)
+                    attributes = element.getAttribute("subs").split(',')
+                }
+            }
+            console.log(attributes)
+        }
+
+        return newHtml
+    }
+
     async function change(value) {
         variable = variable.replaceAll('<br><br>', '<div><br> </div>').replaceAll('<div><br></div>', '<div><br> </div>')
         const startPosition = getCaretPosition(generic)
         const html = variable
         const realPosition = await getRealPosition(html, startPosition)
 
-        setCaret(realPosition[0], realPosition[1])
+        variable = await htmlToMD(html)
+
+
+        // setCaret(realPosition[0], realPosition[1])
     }
+
+    onMount(async () => {
+    
+        variable = await htmlToMD(variable)
+    });
 </script>
 
 <main>
