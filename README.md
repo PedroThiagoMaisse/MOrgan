@@ -4,8 +4,7 @@ My personal day to day app
 ## next steps
 
 ### release 1:
-- ~Create button bases~
-    - ~Component to do testing~
+- Criar um componente de test visual
     - ~Input~
     - ~Select~
     - ~Button~
@@ -15,44 +14,38 @@ My personal day to day app
     - ~Card~
     - ~Titles~
     - ~Text~
+    - Diálogos
 
-- Cold storage
-    - ~Manter objetos quando a pessoa sai da page~
-    - ~UPDATE~ 
-    - Puxar eles de API, e subir-los
-
-- Organization
-    - Better readme
-    - Clean old Archives
-    - Organize archives
-    - Create the "olive" project
+- Organização
+    - ~Better readme~
+    - Limpar arquivos antigos
+    - Organizar os arquivos
+    - Criar os derivados
 
 - Login
-    - Saving key to pc
-    - cryptografing data to coldStore
+    - Definir como vai ser
 
-- QuickNotes
+- QuickNotes  
     -~ Object Reading Navbar~
     -~ Changing selected~
     -~ Replicating change in main screen~
     -~ Different notes~
     -~ Organization ~
-    - Saving current Html
+    - Salvar o HTML atual
     -~Get caret position every change (https://jsfiddle.net/TjXEG/900/)~
-        - BUG when there is an empty line the system doesnt work 
-    - Mark current caret with token
-    - Pass from HTML to simples text, save simple text
-    - Do all fancy trading things
+        - BUG Quando tem uma line vazia isso só n funciona
+    - Markar a posição atual do caret
+    - Passar de html para texto simples, guardar isso
+    - Jogar as classes CSS
     - ~Change caret position (https://jsfiddle.net/vgmbdpa5/10/) to the marked~
-        - BUG Only can change to end of line >>> mirar p/ o text dentro da div antes de settar
-    - only change the current line
+        - BUG Só muda para o final da linha >>> mirar p/ dentro do elemento de texto
+    - Só executar a função na linha atual
 
-    - Getting / posting data to coldStorage with loop in every change
-    - Create new things
+    - Postar as informações só a cada x segundos
+    - Criar novos folders e textos
     
     - UX/UI
-    - Saving dates, number of char
-    - .MD Views
+    - Salvar a última data de modificação
 
 - Planner
     - ~Show WeekBased - show what day of the week and entire week~
@@ -66,21 +59,27 @@ My personal day to day app
     - ~Generating ID on create~
     - ~show only availables for that day~
     - ~Good color when everything is completed~
-    - Use real dates (f)
-    - Organize functions
-    - Unique Tasks
-    - add fire + number of concurrently days
+    - Mudar do padrão atual para real dates
+        - Criar uma função para passar da realdate para um padrão legível (Deve ter algo já natural de js)
+    - Organizar as funções
+    - Tasks Unicas
+    - Limite de data p/ tasks
+    - *Gameficação*
 
 - Projects
-    - Tasks for each project
-    - Features / Releases
-    - Deadlines
+    - Features e releases
+    - Tasks para cada projeto
+    - Data limite para essas coisas
+    - *FUTURO* método da Olive mostrar esses dados em outros lugares
+    
+- Criar coldStorage (Geladeira)
+    Um service escondidinho para ajudar no controle de array-id data type, por enquanto só para svelte e futuramente trazer ele como geral
+    - Mudar o sistema atual para conectar com ele (como node package)
+    - Dar a opção dele conectar com um backend, com troca de login e tals
 
-- Connect all to BE
-    - Planner
-        - Patch event
-        - Delete Event
-        - Check event
-        - Create event (and id)
-        - Get events
-
+- Criar olive
+    UM BE para conexão com mongo
+    - Sistema de login BEEEM seguro
+    - Deixar o FE fazer o manage da maioria das coisas
+    - Criação de regras para visualização de dados públicos
+    - Otimizar esse de cima que sei que vai dar trabalho
