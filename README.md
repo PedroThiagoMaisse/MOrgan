@@ -37,7 +37,7 @@ My personal day to day app
     -~ Replicating change in main screen~
     -~ Different notes~
     -~ Organization ~
-    - Salvar o HTML atual
+    -~Salvar o HTML atual~
     -~Get caret position every change (https://jsfiddle.net/TjXEG/900/)~
         - ~BUG Quando tem uma line vazia isso só n funciona~
     - ~Organização~
@@ -50,7 +50,7 @@ My personal day to day app
         - ~BUG Só muda para o final da linha >>> mirar p/ dentro do elemento de texto~
     - ~Executar on start~
     - ~Não deixar sub repetir~
-    - Só executar a função na linha atual
+    - ~Só executar a função na linha atual~
 
     - Postar as informações só a cada x segundos
     - Criar novos folders e textos

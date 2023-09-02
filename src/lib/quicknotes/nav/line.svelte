@@ -2,6 +2,7 @@
     export let data, n
     import Line from './line.svelte'
     import { selected } from '../shared';
+    import Add from './addNewElement.svelte'
     let startString = ''
 
     let selec = ''
@@ -9,6 +10,11 @@
     selected.subscribe((value) => {
         selec = value
     });
+
+    function build() {
+        console.log(data)
+        data.push({name: 'add', type: 'add', id: null, data: null, parent: data[0] ? data[0].id : ''})
+    }
 
     for (let index = 1; index <= n; index++) {
         if(index === n) {
@@ -21,6 +27,8 @@
     function changeStatus(id) {
         selected.set(id)
     }
+
+    build()
 </script>
 
 <main>
@@ -30,6 +38,8 @@
             {startString}
             {#if element.type === 'folder'}
                 <spam> {element.name} </spam> 
+            {:else if element.type === 'add'}
+                <Add/>
             {:else} 
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <!-- svelte-ignore a11y-no-static-element-interactions -->

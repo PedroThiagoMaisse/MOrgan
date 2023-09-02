@@ -1,15 +1,24 @@
 <script>
     import Line from "./line.svelte";
+    import { buildFileTree } from "../helper";
+    import { coldStorage } from "../../../handler/coldStorage";
+    let filesTree = []
 
-    import { filesTree } from "../shared";
+    async function initiate() {
+        filesTree = await buildFileTree(coldStorage.notes.data)
+    }
+
+    initiate()
+
+    coldStorage.notes.subscribe(async (value) => {
+        filesTree = await buildFileTree(value)
+    });
 
 
 </script>
 
 <main>
     <Line data={filesTree} n={0} />
-    <br>
-      <button> + </button>
 </main>
 
 <style>
