@@ -22,8 +22,7 @@
         var el = generic
         var range = document.createRange();
         var sel = window.getSelection();
-        console.log(el.childNodes[line])
-        range.setStart(el.childNodes[line], position);
+        range.setStart(el.childNodes[line].childNodes[0], position);
         range.collapse(true);
         sel.removeAllRanges();
         sel.addRange(range);
@@ -69,7 +68,7 @@
             const positionsInLine = element.length + 1
             const allPassedPositions = positionsInLine + count
             console.log(allPassedPositions, startPosition)
-            if(allPassedPositions >= startPosition) {
+            if(allPassedPositions > startPosition) {
                 realPosition = [index, startPosition - count] 
             }
             count += positionsInLine
@@ -77,7 +76,7 @@
 
         console.log(html)
         console.log(realPosition)
-        setCaret(realPosition[0], 1)
+        setCaret(realPosition[0], realPosition[1])
     }
 </script>
 

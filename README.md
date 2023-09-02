@@ -44,7 +44,7 @@ My personal day to day app
     - Passar de html para texto simples, guardar isso
     - Jogar as classes CSS
     - ~Change caret position (https://jsfiddle.net/vgmbdpa5/10/) to the marked~
-        - BUG Só muda para o final da linha >>> mirar p/ dentro do elemento de texto
+        - ~BUG Só muda para o final da linha >>> mirar p/ dentro do elemento de texto~
     - Só executar a função na linha atual
 
     - Postar as informações só a cada x segundos
