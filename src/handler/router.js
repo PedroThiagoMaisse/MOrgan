@@ -1,7 +1,6 @@
 import { writable } from 'svelte/store';
 import planner from '../lib/planner/Main.svelte'
 import projects from '../lib/projects/Main.svelte'
-// import calendar from '../lib/calendar/Main.svelte'
 import quicknotes from '../lib/quicknotes/Main.svelte'
 import config from '../lib/config/Main.svelte'
 import tester from '../lib/tester/Main.svelte'
@@ -17,8 +16,7 @@ routes.set( [
             // {name: 'Tester', component: tester},
             {name: 'QuickNotes', component: quicknotes},
             { name: 'Planner', component: planner },
-            { name: 'Projects', component: projects },
-            // {name: 'Calendar', component: calendar},
+            { name: 'Projects', component: projects }
         ]
     },
     {
