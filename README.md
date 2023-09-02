@@ -39,7 +39,9 @@ My personal day to day app
     -~ Organization ~
     - Salvar o HTML atual
     -~Get caret position every change (https://jsfiddle.net/TjXEG/900/)~
-        - BUG Quando tem uma line vazia isso só n funciona
+        - ~BUG Quando tem uma line vazia isso só n funciona~
+    - Organização
+    - Loop por cada elemento
     - Markar a posição atual do caret
     - Passar de html para texto simples, guardar isso
     - Jogar as classes CSS

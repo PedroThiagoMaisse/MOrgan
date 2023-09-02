@@ -53,11 +53,7 @@
         return caretOffset;
     }
 
-    async function change(value) {
-        variable = variable.replaceAll('<br><br>', '<div><br></div>')
-        const startPosition = getCaretPosition(generic)
-        const html = variable
-
+    async function getRealPosition(html, startPosition) {
         const array = html.replaceAll('<div>', '').split('</div>')
         array.pop()
         let realPosition = []
@@ -67,15 +63,21 @@
             const element = array[index].trim().replaceAll('<br>', '')
             const positionsInLine = element.length + 1
             const allPassedPositions = positionsInLine + count
-            console.log(allPassedPositions, startPosition)
             if(allPassedPositions > startPosition) {
                 realPosition = [index, startPosition - count] 
             }
             count += positionsInLine
         }
 
-        console.log(html)
-        console.log(realPosition)
+        return realPosition
+    }
+
+    async function change(value) {
+        variable = variable.replaceAll('<br><br>', '<div><br> </div>').replaceAll('<div><br></div>', '<div><br> </div>')
+        const startPosition = getCaretPosition(generic)
+        const html = variable
+        const realPosition = await getRealPosition(html, startPosition)
+
         setCaret(realPosition[0], realPosition[1])
     }
 </script>
