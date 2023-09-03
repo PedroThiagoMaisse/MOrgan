@@ -16,16 +16,18 @@ My personal day to day app
     - ~Text~
     - Diálogos
 
-- Criar avisinhos
 
-- No caso da plataforma estar rodando dentro de um ambiente de dev, automaticamente puxar o componente de tester, ter uma opção nas configs para puxar isso
+- Configurações
+    - Criar avisinhos
+    - No caso da plataforma estar rodando dentro de um ambiente de dev, automaticamente puxar o componente de tester, ter uma opção nas configs para puxar isso
+    - Avisar que as informações são salvas apenas localmente
 
-- Avisar que as informações são salvas apenas localmente
 
 - Organização
     - ~Better readme~
     - ~Limpar arquivos antigos~
     - Organizar os arquivos
+    - Novas fotos e nome de pacote e no header do navegador
     - Criar os projetos derivados
 
 - Login
