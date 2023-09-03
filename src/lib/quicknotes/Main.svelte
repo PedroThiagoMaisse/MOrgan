@@ -1,8 +1,8 @@
 <script> 
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
     import Navbar from "./nav/Main.svelte";
     import { selected } from "./shared"
-    import { coldStorage } from '../../handler/coldStorage'
+    import { coldStorage, setCS } from '../../handler/coldStorage'
 
     let filesArray = coldStorage.notes.data
     let r = {}
@@ -89,7 +89,6 @@
 
     async function htmlToMD (html, n) {
         let newHtml = html
-        console.log(generic)
         let array = generic.childNodes
 
         if (n) {
@@ -112,7 +111,6 @@
         attributes.forEach(att => {
             if (!str.includes(att)) {
                 const filtered =  subArray.filter((value) => {return att == value.tag})
-                console.log(filtered)
                 for (const [key, value] of Object.entries(filtered[0].style)) {
                     element.style[key] = null
                 }
@@ -146,10 +144,28 @@
         variable = await htmlToMD(html, line)
     }
 
+    async function save() {
+        const obj = {...r, data: variable}
+        coldStorage.notes.patch(obj)
+    }
+
+    async function saveLoop() {
+        while(started) {
+            await sleep(1500)
+            save()
+            setCS()
+        }
+    }
+
     onMount(async () => {
         started = true
         change('', true)
+        saveLoop()
     });
+
+    onDestroy(async () => {
+        started = false
+    })
 </script>
 
 <main>

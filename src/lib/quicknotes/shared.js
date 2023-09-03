@@ -3,7 +3,6 @@ import { buildFileTree } from './helper';
 import { coldStorage } from '../../handler/coldStorage';
 
 
-console.log()
 const selected = writable('T00')
 
 const filesArray = coldStorage.notes.data

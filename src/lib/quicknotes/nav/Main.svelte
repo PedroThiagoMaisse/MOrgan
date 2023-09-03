@@ -14,6 +14,8 @@
         filesTree = await buildFileTree(value)
     });
 
+    console.log(coldStorage.notes.data)
+
 
 </script>
 

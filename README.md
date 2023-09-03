@@ -31,7 +31,8 @@ My personal day to day app
 - Login
     - Definir como vai ser
 
-- QuickNotes  
+- QuickNotes
+    <details>
     -~ Object Reading Navbar~
     -~ Changing selected~
     -~ Replicating change in main screen~
@@ -43,7 +44,7 @@ My personal day to day app
     - ~Organização~
     - ~Loop por cada elemento~
     - ~Marcar a posição atual do caret~
-    - Passar de html para texto simples, guardar isso
+    - ~Passar de html para texto simples, guardar isso~
     - ~Jogar as classes CSS~
     - ~Limpar as classes que não existem mais~
     - ~Change caret position (https://jsfiddle.net/vgmbdpa5/10/) to the marked~
@@ -51,13 +52,14 @@ My personal day to day app
     - ~Executar on start~
     - ~Não deixar sub repetir~
     - ~Só executar a função na linha atual~
-
-    - Postar as informações só a cada x segundos
-    - Criar novos folders e textos
+    - ~Quando deleta o botão de adicionar some~
+    - ~Postar as informações só a cada x segundos~
+    - ~Criar novos folders e textos~
     
     - UX/UI
     - Salvar a última data de modificação
     - Separar o quando o elemento é um sub repetido
+    </details>
 
 
 - Planner
