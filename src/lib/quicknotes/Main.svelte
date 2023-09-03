@@ -1,33 +1,48 @@
 <script> 
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
     import Navbar from "./nav/Main.svelte";
-    import { selected, filesTree, filesArray } from "./shared";
+    import { selected } from "./shared"
+    import { coldStorage, setCS } from '../../handler/coldStorage'
+
+    let filesArray = coldStorage.notes.data
     let r = {}
     let variable = ''
     let generic = null
+    let started = false
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-    selected.subscribe((value) => {
+    const subArray = [
+            {tag: '#', style: {fontSize: '46px', fontWeight: '800'}},
+            {tag: '##', style: {fontSize: '36px', fontWeight: '800'}},
+            {tag: '###', style: {fontSize: '26px', fontWeight: '800'}},
+            {tag: '!', style: {color: 'red'}},
+            {tag: '!!', style: {color: 'green'}},
+            {tag: '~', style: {textDecorationColor: '#FAFAFA', textDecoration: 'line-through'}},
+            {tag: '**', style: {fontWeight: '1000'}},
+            {tag: '* ', style: {fontStyle: 'italic'}},
+            {tag: '&gt', style: {paddingLeft: '32px', backgroundColor: 'rgba(0,0,0, 0.3)'}},
+            {tag: '-', style: {listStyleType: 'circle', display: 'list-item', 'listStylePosition': 'inside', marginLeft: '32px'}},
+        ]
+
+    coldStorage.notes.subscribe(async (value) => {
+        filesArray = value
+    });
+
+    selected.subscribe(async (value) => {
         for (let index = 0; index < filesArray.length; index++) {
             const element = filesArray[index];
             if(element.id === value) {
                 r = element
                 // @ts-ignore
                 variable = element.data
-                // change()
+                // variable = await htmlToMD(variable)
+                if (started) {
+                    await sleep(500)
+                    change('', true)
+                }
             }
         }
     });
-
-    function setCaret(line, position) {
-        var el = generic
-        var range = document.createRange();
-        var sel = window.getSelection();
-        console.log(el.childNodes[line])
-        range.setStart(el.childNodes[line], position);
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
-    }
 
     function getCaretPosition(element) {
         var caretOffset = 0;
@@ -44,7 +59,6 @@
                 caretOffset = preCaretRange.toString().length;
             }
         } else if ( (sel = doc.selection) && sel.type != "Control") {
-            console.log('aq')
             var textRange = sel.createRange();
             var preCaretTextRange = doc.body.createTextRange();
             preCaretTextRange.moveToElementText(element);
@@ -54,11 +68,7 @@
         return caretOffset;
     }
 
-    async function change(value) {
-        variable = variable.replaceAll('<br><br>', '<div><br></div>')
-        const startPosition = getCaretPosition(generic)
-        const html = variable
-
+    async function getRealPosition(html, startPosition) {
         const array = html.replaceAll('<div>', '').split('</div>')
         array.pop()
         let realPosition = []
@@ -68,17 +78,94 @@
             const element = array[index].trim().replaceAll('<br>', '')
             const positionsInLine = element.length + 1
             const allPassedPositions = positionsInLine + count
-            console.log(allPassedPositions, startPosition)
-            if(allPassedPositions >= startPosition) {
+            if(allPassedPositions > startPosition) {
                 realPosition = [index, startPosition - count] 
             }
             count += positionsInLine
         }
 
-        console.log(html)
-        console.log(realPosition)
-        setCaret(realPosition[0], 1)
+        return realPosition
     }
+
+    async function htmlToMD (html, n) {
+        let newHtml = html
+        let array = generic.childNodes
+
+        if (n) {
+            const element = array[n]
+            checkElement(element)
+        } else {
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index]
+                checkElement(element)
+            }
+        }
+
+        return newHtml
+    }
+
+    async function checkElement(element) {
+        const str = element.innerHTML
+        let attributes = element.getAttribute("subs") ? element.getAttribute("subs").split(',') : []
+
+        attributes.forEach(att => {
+            if (!str.includes(att)) {
+                const filtered =  subArray.filter((value) => {return att == value.tag})
+                for (const [key, value] of Object.entries(filtered[0].style)) {
+                    element.style[key] = null
+                }
+                element.setAttribute("subs", attributes.join(',').replaceAll("," + filtered[0].tag, ''))
+                attributes = element.getAttribute("subs") ? element.getAttribute("subs").split(',') : []
+            }
+        });
+
+        for (let i = 0; i < subArray.length; i++) {
+            const sub = subArray[i];
+            if (str.includes(sub.tag) && !attributes.includes(sub.tag)) {
+                for (const [key, value] of Object.entries(sub.style)) {
+                    element.style[key] = value
+                }
+                element.setAttribute("subs", attributes + "," + sub.tag)
+                attributes = element.getAttribute("subs").split(',')
+            }
+        }
+    }
+
+    async function change(value, flip) {
+        variable = variable.replaceAll('<br><br>', '<div><br> </div>').replaceAll('<div><br></div>', '<div><br> </div>')
+        let line = null
+        const html = variable
+        if (!flip) {
+            const startPosition = getCaretPosition(generic)
+            const realPosition = await getRealPosition(html, startPosition)
+            line = realPosition[0]
+        }
+
+        variable = await htmlToMD(html, line)
+    }
+
+    async function save() {
+        const obj = {...r, data: variable}
+        coldStorage.notes.patch(obj)
+    }
+
+    async function saveLoop() {
+        while(started) {
+            await sleep(1500)
+            save()
+            setCS()
+        }
+    }
+
+    onMount(async () => {
+        started = true
+        change('', true)
+        saveLoop()
+    });
+
+    onDestroy(async () => {
+        started = false
+    })
 </script>
 
 <main>

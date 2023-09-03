@@ -33,27 +33,36 @@ My personal day to day app
 - Login
     - Definir como vai ser
 
-- QuickNotes  
+- QuickNotes
+    <details>
     -~ Object Reading Navbar~
     -~ Changing selected~
     -~ Replicating change in main screen~
     -~ Different notes~
     -~ Organization ~
-    - Salvar o HTML atual
+    -~Salvar o HTML atual~
     -~Get caret position every change (https://jsfiddle.net/TjXEG/900/)~
-        - BUG Quando tem uma line vazia isso só n funciona
-    - Markar a posição atual do caret
-    - Passar de html para texto simples, guardar isso
-    - Jogar as classes CSS
+        - ~BUG Quando tem uma line vazia isso só n funciona~
+    - ~Organização~
+    - ~Loop por cada elemento~
+    - ~Marcar a posição atual do caret~
+    - ~Passar de html para texto simples, guardar isso~
+    - ~Jogar as classes CSS~
+    - ~Limpar as classes que não existem mais~
     - ~Change caret position (https://jsfiddle.net/vgmbdpa5/10/) to the marked~
         - ~BUG Só muda para o final da linha >>> mirar p/ dentro do elemento de texto~
-    - Só executar a função na linha atual
-
-    - Postar as informações só a cada x segundos
-    - Criar novos folders e textos
+    - ~Executar on start~
+    - ~Não deixar sub repetir~
+    - ~Só executar a função na linha atual~
+    - ~Quando deleta o botão de adicionar some~
+    - ~Postar as informações só a cada x segundos~
+    - ~Criar novos folders e textos~
     
     - UX/UI
     - Salvar a última data de modificação
+    - Separar o quando o elemento é um sub repetido
+    </details>
+
 
 - Planner
     - ~Show WeekBased - show what day of the week and entire week~
