@@ -35,22 +35,20 @@ My personal day to day app
 
 - QuickNotes
     <details>
-    -~ Object Reading Navbar~
-    -~ Changing selected~
-    -~ Replicating change in main screen~
-    -~ Different notes~
-    -~ Organization ~
-    -~Salvar o HTML atual~
-    -~Get caret position every change (https://jsfiddle.net/TjXEG/900/)~
-        - ~BUG Quando tem uma line vazia isso só n funciona~
+    - ~Object Reading Navbar~
+    - ~Changing selected~
+    - ~Replicating change in main screen~
+    - ~Different notes~
+    - ~Organization ~
+    - ~Salvar o HTML atual~
+    - ~Get caret position every change~
     - ~Organização~
     - ~Loop por cada elemento~
     - ~Marcar a posição atual do caret~
     - ~Passar de html para texto simples, guardar isso~
     - ~Jogar as classes CSS~
     - ~Limpar as classes que não existem mais~
-    - ~Change caret position (https://jsfiddle.net/vgmbdpa5/10/) to the marked~
-        - ~BUG Só muda para o final da linha >>> mirar p/ dentro do elemento de texto~
+    - ~Change caret position to the marked~
     - ~Executar on start~
     - ~Não deixar sub repetir~
     - ~Só executar a função na linha atual~
