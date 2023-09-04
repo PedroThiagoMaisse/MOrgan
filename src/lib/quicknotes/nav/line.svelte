@@ -36,76 +36,68 @@
 </script>
 
 <main>
+    <div class='{n ? 'line' : ''}'/>
+    <div style="position: relative">
     {#each data as element}
-        <p class="{element.id===selec? 'selec' : ''}">
-            <!-- {startString !== '' ? ' ' + startString.replaceAll('>', ' ') + '\n' : ''} -->
-            {startString}
+        <div style="display: flex; position: relative">
+            <div class="{element.id===selec? 'selected' : ''}" style="transform: translateX(-{n*13+16}px)"/>
+
             {#if element.type === 'folder'}
-                <spam> ˅ {element.name} </spam> 
-            {:else if element.type === 'add'}
-                <Add parent={element}/>
-            {:else} 
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <!-- svelte-ignore a11y-no-static-element-interactions -->
-                <spam class="clickable" on:click={() => changeStatus(element.id)}> {element.name} </spam>
+                <p> ˅ {element.name} </p> 
+            {:else}
+                <p class="clickable" on:click={() => changeStatus(element.id)}> {element.name} </p>
             {/if}
-            {#if element.type !== 'add'}
-                <button class="cancel" on:click={() => dele(element.id)}> x </button>
-            {/if}
-        </p>
+
+            <button class="cancel" on:click={() => dele(element.id)}> x </button>
+        </div>
         {#if element.type == 'folder'}
             <Line data="{element.data}" n={n+1}/>
         {/if}
     {/each}
-        <p>
-            <!-- {startString !== '' ? ' ' + startString.replaceAll('>', ' ') + '\n' : ''} -->
-            {startString}
-            <Add parent={element}/>
-            {#if element.type !== 'add'}
-                <button class="cancel" on:click={() => dele(element.id)}> x </button>
-            {/if}
-        </p>
+        <Add parent={element}/>
+    </div>
 </main>
 
 <style>
-    .selec{
-        background-color: #444;
-    }
-    .cancel{
-        bottom: 2px;
-        scale: 0.8;
-        z-index: 5;
-        position: relative;
-        font-size: 12px;
-        line-height: 100%;
-        padding: 2px 4px 2px 4px;
-        background-color: transparent;
-    }
-    p{
-        height: 100%;
-        padding: 0px;
-        color: #AAA;
-        margin: 0px;
-        white-space: pre;
-    }
-
-    .tag{
-        color: purple;
+    .selected{
+        position: absolute;
+        top: 0px;
+        width: calc(180px + 32px);
+        height: 24px;
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     .clickable{
-        min-height: 24px;
         color: #FFF;
-        line-height: 120%;
-        border-width: 0px 0px 0px 2px;
-        border-style: solid;
-        border-color: #666;
-        padding-left: 4px;
     }
 
     .clickable:hover{
         text-decoration: underline;
         cursor: pointer;
     }
+p{
+    padding: 4px 0px 4px 0px;
+    line-height: 100%;
+    margin: 0px;
+}
+
+.cancel{
+    padding: 0px 2px 0px 2px;
+    margin-left: 6px;
+    position: relative;
+    bottom: 2px;
+    font-size: 12px;
+}
+
+main{
+    display: flex
+}
+
+.line{
+    margin-left: 4px;
+    width: 8px;
+    border-width: 0px 0px 0px 1px;
+    border-style: solid;
+}
 
 </style>
