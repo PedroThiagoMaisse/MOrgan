@@ -20,9 +20,9 @@
 
     for (let index = 1; index <= n; index++) {
         if(index === n) {
-           startString += ' |----'
+           startString += '  '
         } else {
-        startString += ' |    '
+        startString += '  '
         }
     }
 
@@ -37,18 +37,17 @@
 
 <main>
     {#each data as element}
-        <p>
-            {startString !== '' ? ' ' + startString.replaceAll('-', ' ') + '\n' : ''}
+        <p class="{element.id===selec? 'selec' : ''}">
+            <!-- {startString !== '' ? ' ' + startString.replaceAll('>', ' ') + '\n' : ''} -->
             {startString}
             {#if element.type === 'folder'}
-                <spam> {element.name} </spam> 
+                <spam> ˅ {element.name} </spam> 
             {:else if element.type === 'add'}
                 <Add parent={element}/>
             {:else} 
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <!-- svelte-ignore a11y-no-static-element-interactions -->
                 <spam class="clickable" on:click={() => changeStatus(element.id)}> {element.name} </spam>
-                <spam class="tag"> {element.id === selec ? '#' : ''} </spam>
             {/if}
             {#if element.type !== 'add'}
                 <button class="cancel" on:click={() => dele(element.id)}> x </button>
@@ -59,7 +58,7 @@
         {/if}
     {/each}
         <p>
-            {startString !== '' ? ' ' + startString.replaceAll('-', ' ') + '\n' : ''}
+            <!-- {startString !== '' ? ' ' + startString.replaceAll('>', ' ') + '\n' : ''} -->
             {startString}
             <Add parent={element}/>
             {#if element.type !== 'add'}
@@ -69,6 +68,9 @@
 </main>
 
 <style>
+    .selec{
+        background-color: #444;
+    }
     .cancel{
         bottom: 2px;
         scale: 0.8;
@@ -79,10 +81,11 @@
         padding: 2px 4px 2px 4px;
         background-color: transparent;
     }
-p{
+    p{
+        height: 100%;
+        padding: 0px;
         color: #AAA;
         margin: 0px;
-        line-height: 100%;
         white-space: pre;
     }
 
@@ -91,8 +94,13 @@ p{
     }
 
     .clickable{
+        min-height: 24px;
         color: #FFF;
-        line-height: 100%;
+        line-height: 120%;
+        border-width: 0px 0px 0px 2px;
+        border-style: solid;
+        border-color: #666;
+        padding-left: 4px;
     }
 
     .clickable:hover{
