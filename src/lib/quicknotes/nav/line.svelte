@@ -18,14 +18,6 @@
 
     const element = {name: 'add', type: 'add', id: null, data: null, parent: data[0] ? data[0].parent : ''}
 
-    for (let index = 1; index <= n; index++) {
-        if(index === n) {
-           startString += '  '
-        } else {
-        startString += '  '
-        }
-    }
-
     function changeStatus(id) {
         selected.set(id)
     }
@@ -63,7 +55,7 @@
         position: absolute;
         top: 0px;
         width: calc(180px + 32px);
-        height: 24px;
+        height: 28px;
         background-color: rgba(255, 255, 255, 0.1);
     }
 
@@ -76,16 +68,17 @@
         cursor: pointer;
     }
 p{
-    padding: 4px 0px 4px 0px;
+    padding: 6px 0px 8px 0px;
     line-height: 100%;
     margin: 0px;
 }
 
 .cancel{
-    padding: 0px 2px 0px 2px;
+    height: 16px;
+    padding: 0px 4px 0px 4px;
     margin-left: 6px;
     position: relative;
-    bottom: 2px;
+    bottom: -6px;
     font-size: 12px;
 }
 
