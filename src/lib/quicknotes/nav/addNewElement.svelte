@@ -22,7 +22,6 @@ class='btn'
     }
 
     function go() {
-        console.log(parent)
         const obj = {... newTask, parent: parent.parent, data: newTask.type === 'folder' ? [] : ''}
         coldStorage.notes.post(obj)
     }

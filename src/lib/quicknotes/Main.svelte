@@ -10,6 +10,7 @@
     let generic = null
     let started = false
     const sleep = ms => new Promise(r => setTimeout(r, ms));
+    let changesMade = false
 
     const subArray = [
             {tag: '#', style: {fontSize: '46px', fontWeight: '800'}},
@@ -142,6 +143,7 @@
         }
 
         variable = await htmlToMD(html, line)
+        changesMade = true
     }
 
     async function save() {
@@ -152,8 +154,11 @@
     async function saveLoop() {
         while(started) {
             await sleep(1500)
-            save()
-            setCS()
+            if (changesMade) {
+                save()
+                setCS()
+                changesMade = false
+            }
         }
     }
 

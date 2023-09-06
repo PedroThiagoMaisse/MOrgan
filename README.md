@@ -39,12 +39,14 @@ My personal day to day app
     - ~Changing selected~
     - ~Replicating change in main screen~
     - ~Different notes~
-    - ~Organization ~
+    - ~Organization~
+
     - ~Salvar o HTML atual~
     - ~Get caret position every change~
     - ~Organização~
     - ~Loop por cada elemento~
     - ~Marcar a posição atual do caret~
+
     - ~Passar de html para texto simples, guardar isso~
     - ~Jogar as classes CSS~
     - ~Limpar as classes que não existem mais~
@@ -56,6 +58,8 @@ My personal day to day app
     - ~Postar as informações só a cada x segundos~
     - ~Criar novos folders e textos~
     
+    - Mudar de p para uma tag de buttão-text
+    - Resolver os bugs quando é passado de html para md
     - UX/UI
     - Salvar a última data de modificação
     - Separar o quando o elemento é um sub repetido

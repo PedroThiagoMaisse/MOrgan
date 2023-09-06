@@ -36,10 +36,8 @@ function constructBranch(key, value) {
                     array[index] = value
                 }
             }
-            console.log(array)
             this.watcher.update((n) => n = array)
             this.data = array
-            console.log(this.data)
             setCS()
         }
     }

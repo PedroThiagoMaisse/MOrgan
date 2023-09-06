@@ -1,13 +1,14 @@
 <script>
-    export let data, n
+    export let data, n, parentId
     import Line from './line.svelte'
     import { selected } from '../shared';
     import Add from './addNewElement.svelte'
     import { coldStorage } from '../../../handler/coldStorage';
     let startString = ''
-
+    let isOpen = true
     let selec = ''
-    
+    let unique = {}
+
     coldStorage.notes.subscribe((value) =>{
         let inutil = value
     })
@@ -16,7 +17,7 @@
         selec = value
     });
 
-    const element = {name: 'add', type: 'add', id: null, data: null, parent: data[0] ? data[0].parent : ''}
+    const element = {name: 'add', type: 'add', id: null, data: null, parent: parentId}
 
     function changeStatus(id) {
         selected.set(id)
@@ -24,6 +25,11 @@
 
     function dele(value) {
         coldStorage.notes.delete(value)
+    }
+
+    function changeOpenStatus(element) {
+        element.isOpen = element.isOpen? false : true
+        unique = {}
     }
 </script>
 
@@ -33,17 +39,19 @@
     {#each data as element}
         <div style="display: flex; position: relative">
             <div class="{element.id===selec? 'selected' : ''}" style="transform: translateX(-{n*13+16}px)"/>
-
             {#if element.type === 'folder'}
-                <p> ˅ {element.name} </p> 
+                <p class="hover" on:click={() => changeOpenStatus(element)} > 
+                    {element.isOpen && unique ? '˅' : '>'} 
+                    {element.name}
+                </p> 
             {:else}
                 <p class="clickable" on:click={() => changeStatus(element.id)}> {element.name} </p>
             {/if}
 
             <button class="cancel" on:click={() => dele(element.id)}> x </button>
         </div>
-        {#if element.type == 'folder'}
-            <Line data="{element.data}" n={n+1}/>
+        {#if element.type == 'folder' && element.isOpen}
+            <Line data="{element.data}" n={n+1} parentId={element.id}/>
         {/if}
     {/each}
         <Add parent={element}/>
@@ -63,6 +71,11 @@
         color: #FFF;
     }
 
+
+    .hover:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
     .clickable:hover{
         text-decoration: underline;
         cursor: pointer;
