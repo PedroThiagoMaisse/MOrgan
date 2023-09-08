@@ -5,6 +5,7 @@ My personal day to day app
 
 ### release 1:
 - Criar um componente de test visual
+    <details>
     - ~Input~
     - ~Select~
     - ~Button~
@@ -15,23 +16,26 @@ My personal day to day app
     - ~Titles~
     - ~Text~
     - Diálogos
+    </details>
 
 
 - Configurações
+    <details>
     - Criar avisinhos
     - No caso da plataforma estar rodando dentro de um ambiente de dev, automaticamente puxar o componente de tester, ter uma opção nas configs para puxar isso
     - Avisar que as informações são salvas apenas localmente
+    - Colocar task e notes padrões
+    </details>
 
 
 - Organização
+    <details>
     - ~Better readme~
     - ~Limpar arquivos antigos~
     - Organizar os arquivos
     - Novas fotos e nome de pacote e no header do navegador
     - Criar os projetos derivados
-
-- Login
-    - Definir como vai ser
+    </details>
 
 - QuickNotes
     <details>
@@ -67,6 +71,7 @@ My personal day to day app
 
 
 - Planner
+    <details>
     - ~Show WeekBased - show what day of the week and entire week~
     - ~Show another week~
     - ~Show last 3 days~
@@ -83,22 +88,40 @@ My personal day to day app
     - Organizar as funções
     - Tasks Unicas
     - Limite de data p/ tasks
-    - *Gameficação*
+    </details>
+
+### release 2:
 
 - Projects
+    <details>
     - Features e releases
     - Tasks para cada projeto
     - Data limite para essas coisas
     - *FUTURO* método da Olive mostrar esses dados em outros lugares
-    
+    </details>
+
+- Tasks *Gameficação*
+
+### release 3:
+
+- APKS
+
+### release 4:
+
+- Login
+
 - Criar coldStorage (Geladeira)
+    <details>
     Um service escondidinho para ajudar no controle de array-id data type, por enquanto só para svelte e futuramente trazer ele como geral
     - Mudar o sistema atual para conectar com ele (como node package)
     - Dar a opção dele conectar com um backend, com troca de login e tals
+    </details>
 
 - Criar olive
+    <details>
     UM BE para conexão com mongo
     - Sistema de login BEEEM seguro
     - Deixar o FE fazer o manage da maioria das coisas
     - Criação de regras para visualização de dados públicos
     - Otimizar esse de cima que sei que vai dar trabalho
+    </details>

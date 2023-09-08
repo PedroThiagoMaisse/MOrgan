@@ -27,7 +27,7 @@
     }
     .option{
         padding: 16px 0px 0px 0px;
-        height: calc(100% - 16px);
+        height: calc(100% - 46px);
         display: flex;
         justify-content: space-between;
         flex-direction: column;
@@ -43,7 +43,7 @@
 
     .tab{
         display: flex;
-        margin-bottom: 16px;
+        margin-top: 16px;
         background-color: transparent;
         border-radius: 0px;
         border-width: 0px;
@@ -58,12 +58,7 @@
         color: #DDD !important;
         border-color: #DDD !important;
     }
-    .section{
-        position: relative; 
-        padding: 0px 0px 0px 0px; 
-        margin-bottom: 16px;
-        margin-top: 18px;
-    }
+
 
     main h1{
         color: #DDD;
