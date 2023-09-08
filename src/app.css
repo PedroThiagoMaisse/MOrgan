@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Melo';
+  font-family: 'Droid Sans Mono', 'Liberation Sans';
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -30,7 +30,7 @@ body {
 
 
 
-input, select, button {
+input:not(.null), select:not(.null), button:not(.null) {
   border-radius: 4px;
   border: 1px solid rgba(0,0,0, 0.2);
   padding: 8px;
@@ -100,13 +100,13 @@ button.cancel{
   color: red;
 }
 
-button:hover ,input:hover, select:hover {
+button:hover:not(.null) ,input:hover:not(.null), select:hover:not(.null) {
   border-color: rgba(207, 207, 207, 0.3);
 }
 
 
-button:focus,
-button:focus-visible {
+button:focus:not(.null),
+button:focus-visible:not(.null) {
   outline: 2px auto -webkit-focus-ring-color;
 }
 /* 
