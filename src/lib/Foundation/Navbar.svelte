@@ -11,7 +11,7 @@
             {#each element.list as option, x (option)}
                 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->   <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <button class="tab null {i=== selected[0] && x == selected[1] ? 'yes' : ''}" on:click={() => changeRoute(i, x)} >
-                    <img width="32px" height="32px" id="Outlined" src={option.icon}/>
+                    <img alt="{option.name}" width="32px" height="32px" id="Outlined" src={option.icon}/>
                 </button>
             {/each}
         </div>

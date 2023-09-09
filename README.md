@@ -39,7 +39,7 @@ My personal day to day app
     - ~Better readme~
     - ~Limpar arquivos antigos~
     - ~Organizar os arquivos~
-    - Novas fotos e nome de pacote e no header do navegador
+    - ~Novas fotos e nome de pacote e no header do navegador~
     </details>
 
 - QuickNotes

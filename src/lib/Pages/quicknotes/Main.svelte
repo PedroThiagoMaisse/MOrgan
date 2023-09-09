@@ -46,49 +46,6 @@
         }
     });
 
-    function getCaretPosition(element) {
-        var caretOffset = 0;
-        var doc = element.ownerDocument || element.document;
-        var win = doc.defaultView || doc.parentWindow;
-        var sel;
-        if (typeof win.getSelection != "undefined") {
-            sel = win.getSelection();
-            if (sel.rangeCount > 0) {
-                var range = win.getSelection().getRangeAt(0);
-                var preCaretRange = range.cloneRange();
-                preCaretRange.selectNodeContents(element);
-                preCaretRange.setEnd(range.endContainer, range.endOffset);
-                caretOffset = preCaretRange.toString().length;
-            }
-        } else if ( (sel = doc.selection) && sel.type != "Control") {
-            var textRange = sel.createRange();
-            var preCaretTextRange = doc.body.createTextRange();
-            preCaretTextRange.moveToElementText(element);
-            preCaretTextRange.setEndPoint("EndToEnd", textRange);
-            caretOffset = preCaretTextRange.text.length;
-        }
-        return caretOffset;
-    }
-
-    async function getRealPosition(html, startPosition) {
-        const array = html.replaceAll('<div>', '').split('</div>')
-        array.pop()
-        let realPosition = []
-
-        let count = 0
-        for (let index = 0; index < array.length && !realPosition.length; index++) {
-            const element = array[index].trim().replaceAll('<br>', '')
-            const positionsInLine = element.length + 1
-            const allPassedPositions = positionsInLine + count
-            if(allPassedPositions > startPosition) {
-                realPosition = [index, startPosition - count] 
-            }
-            count += positionsInLine
-        }
-
-        return realPosition
-    }
-
     async function htmlToMD (html, n) {
         let newHtml = html
         let array = generic.childNodes
@@ -133,20 +90,10 @@
         }
     }
 
-    async function removeNested() {
-        
-    }
-
     async function change(value, flip) {
         try {
-        const startPosition = getCaretPosition(generic)
         variable = variable.replaceAll('<br><br>', '</div><div><br>').replaceAll('<div><br></div>', '<div><br> </div>')
         const html = variable
-        const realPosition = await getRealPosition(html, startPosition)
-        // if (!flip) {
-        //     line = realPosition[0]
-        //     console.log(realPosition)
-        // }
 
         variable = await htmlToMD(html)
         changesMade = true
@@ -182,7 +129,7 @@
 
 <main>
     <Navbar/>
-    <div class="textField" contenteditable="true" bind:innerHTML={variable} bind:this={generic} on:keyup={(value) => {change(value)}}>
+    <div role="textbox" tabindex="-1" class="textField" contenteditable="true" bind:innerHTML={variable} bind:this={generic} on:keyup={(value) => {change(value)}}>
         {r.data}
     </div>
 </main>
