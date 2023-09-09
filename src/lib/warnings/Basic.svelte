@@ -1,19 +1,26 @@
 <script>
     export let text, level, id
-    
+    import warning from "../../handler/warning";
+
     function close () {
-        console.log(id)
+        warning.removeWarning(id)
     }
 </script> 
 
-<button class="{level}" on:click={close}>
+<button class="{level} null" on:click={close}>
 
     {text}
 
 </button>
 
 <style>
+    button:hover{
+        scale: 1.1;
+        cursor: pointer;
+    }
+
     button{
+        transition: 1s;
         font-weight: 600;
         border-style: solid;
         border-width: 0px 0px 0px 6px;

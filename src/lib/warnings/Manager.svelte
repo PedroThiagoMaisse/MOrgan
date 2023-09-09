@@ -1,10 +1,12 @@
 <script>
     import Basic from "./Basic.svelte";
-    const array = [
-        {level: 'warning', text: 'Não há DB conectado!', id: '2'},
-        {level: 'error', text: 'Não foi encontrando um método de Error-Handling', id: '1'}
-    ]
+    import warning from "../../handler/warning.js";
+    let array = warning.array
 
+
+    warning.warnings.subscribe((value) => {
+        array = value
+    })
 
 </script>
 

@@ -18,8 +18,8 @@ routes.set( [
         name: 'main',
         list: [
             // {name: 'Tester', component: tester},
-            {name: 'QuickNotes', component: quicknotes, icon: calendarIcon},
-            { name: 'Planner', component: planner, icon: notesIcon },
+            {name: 'QuickNotes', component: quicknotes, icon: notesIcon},
+            { name: 'Planner', component: planner, icon: calendarIcon },
             // { name: 'Projects', component: projects }
         ]
     },
