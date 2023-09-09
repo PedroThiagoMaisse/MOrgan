@@ -21,10 +21,16 @@ My personal day to day app
 
 - Configurações
     <details>
-    - Criar avisinhos
-    - No caso da plataforma estar rodando dentro de um ambiente de dev, automaticamente puxar o componente de tester, ter uma opção nas configs para puxar isso
-    - Avisar que as informações são salvas apenas localmente
+    - ~Criar avisinhos~
+    - ~No caso da plataforma estar rodando dentro de um ambiente de dev, automaticamente puxar o componente de tester, ter uma opção nas configs para puxar isso
+    - ~Avisar que as informações são salvas apenas localmente~
+    - Opção para retirar os avisos
+    - Método externo para adicionar avisos
+    - Conexão com o Handler de erros
     - Colocar task e notes padrões
+    - Expor configs padrões para o router e pegar ela nas configs:
+        - Gerar notes e tasks padrões
+        - Mudar o timing de html - md
     </details>
 
 
