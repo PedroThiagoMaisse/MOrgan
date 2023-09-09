@@ -1,6 +1,6 @@
 <script>
     import Basic from "./Basic.svelte";
-    import warning from "../../handler/warning.js";
+    import warning from "../../../Stores/warning.js";
     let array = warning.array
 
 

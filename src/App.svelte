@@ -1,8 +1,8 @@
 <script>
-  import Navbar from './lib/Navbar.svelte';
-  import ContentManager from './lib/ContentManager.svelte';
-  import {selected, routes, changeRoute} from './handler/router'
-  import Manager from './lib/warnings/Manager.svelte';
+  import Navbar from './lib/Foundation/Navbar.svelte';
+  import ContentManager from './lib/Foundation/ContentManager.svelte';
+  import {selected, routes, changeRoute} from './Stores/router'
+  import Manager from './lib/Foundation/Warnings/Manager.svelte';
   let select, rout
   let router = {selected, routes, changeRoute}
 

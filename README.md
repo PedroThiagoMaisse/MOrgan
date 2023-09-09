@@ -38,9 +38,8 @@ My personal day to day app
     <details>
     - ~Better readme~
     - ~Limpar arquivos antigos~
-    - Organizar os arquivos
+    - ~Organizar os arquivos~
     - Novas fotos e nome de pacote e no header do navegador
-    - Criar os projetos derivados
     </details>
 
 - QuickNotes

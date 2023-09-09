@@ -3,7 +3,7 @@
 
     import CreateNewTask from './createNewTask.svelte';
     import {removeDaysFromDate, getFirstDayOffWeek, addDaysFromDate, toBRDate, toWeekDayName, getRelativeDay} from './helper'
-    import { coldStorage } from '../../handler/coldStorage';
+    import { coldStorage } from '../../../Stores/coldStorage';
     import {onMount} from 'svelte'
 
     let events = []

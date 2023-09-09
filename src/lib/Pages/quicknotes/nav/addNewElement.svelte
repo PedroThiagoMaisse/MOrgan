@@ -5,7 +5,7 @@ class='btn'
 
 <script>
     export let parent
-    import { coldStorage } from "../../../handler/coldStorage";
+    import { coldStorage } from "../../../../Stores/coldStorage";
     let eventDialog
     const week = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
 

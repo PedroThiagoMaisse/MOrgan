@@ -1,7 +1,7 @@
 <script>
     import Line from "./line.svelte";
     import { buildFileTree } from "../helper";
-    import { coldStorage } from "../../../handler/coldStorage";
+    import { coldStorage } from "../../../../Stores/coldStorage";
     let filesTree = []
 
     async function initiate() {
@@ -18,7 +18,7 @@
 </script>
 
 <main>
-    <Line data={filesTree} n={0} />
+    <Line data={filesTree} n={0} parentId={undefined}/>
 </main>
 
 <style>

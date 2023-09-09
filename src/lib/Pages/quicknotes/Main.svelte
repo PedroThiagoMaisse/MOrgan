@@ -2,8 +2,8 @@
     import { onMount, onDestroy } from "svelte";
     import Navbar from "./nav/Main.svelte";
     import { selected } from "./shared"
-    import { coldStorage, setCS } from '../../handler/coldStorage'
-    import warning from "../../handler/warning";
+    import { coldStorage, setCS } from '../../../Stores/coldStorage'
+    import warning from "../../../Stores/warning";
 
     let filesArray = coldStorage.notes.data
     let r = {}

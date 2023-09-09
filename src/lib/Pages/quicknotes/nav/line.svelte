@@ -3,7 +3,7 @@
     import Line from './line.svelte'
     import { selected } from '../shared';
     import Add from './addNewElement.svelte'
-    import { coldStorage } from '../../../handler/coldStorage';
+    import { coldStorage } from '../../../../Stores/coldStorage';
     let startString = ''
     let isOpen = true
     let selec = ''

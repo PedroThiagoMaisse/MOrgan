@@ -1,9 +1,8 @@
+// @ts-nocheck
 import { writable } from 'svelte/store';
-import planner from '../lib/planner/Main.svelte'
-// import projects from '../lib/projects/Main.svelte'
-import quicknotes from '../lib/quicknotes/Main.svelte'
-import config from '../lib/config/Main.svelte'
-// import tester from '../lib/tester/Main.svelte'
+import planner from '../lib/Pages/planner/Main.svelte'
+import quicknotes from '../lib/Pages/quicknotes/Main.svelte'
+import config from '../lib/Config/Main.svelte'
 import calendarIcon from '../assets/icons/calendar.svg'
 import notesIcon from '../assets/icons/notes.svg'
 import settingsIcon from '../assets/icons/settings.svg'
@@ -16,10 +15,8 @@ routes.set( [
     {
         name: 'main',
         list: [
-            // {name: 'Tester', component: tester},
             {name: 'QuickNotes', component: quicknotes, icon: notesIcon},
-            { name: 'Planner', component: planner, icon: calendarIcon },
-            // { name: 'Projects', component: projects }
+            {name: 'Planner', component: planner, icon: calendarIcon },
         ]
     },
     {

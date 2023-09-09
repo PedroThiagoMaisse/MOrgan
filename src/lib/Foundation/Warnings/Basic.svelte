@@ -1,6 +1,6 @@
 <script>
     export let element
-    import warning from "../../handler/warning";
+    import warning from "../../../Stores/warning";
 
     function close () {
         warning.removeWarning(element.id)
