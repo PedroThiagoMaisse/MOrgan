@@ -8,7 +8,6 @@ import calendarIcon from '../assets/icons/calendar.svg'
 import notesIcon from '../assets/icons/notes.svg'
 import settingsIcon from '../assets/icons/settings.svg'
 
-console.log(notesIcon)
 const selected = writable([0, 0])
 const routes = writable([])
 

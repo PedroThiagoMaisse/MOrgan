@@ -3,6 +3,7 @@
     import Navbar from "./nav/Main.svelte";
     import { selected } from "./shared"
     import { coldStorage, setCS } from '../../handler/coldStorage'
+    import warning from "../../handler/warning";
 
     let filesArray = coldStorage.notes.data
     let r = {}
@@ -92,20 +93,20 @@
         let newHtml = html
         let array = generic.childNodes
 
-        if (n) {
-            const element = array[n]
+        for (let index = 0; index < array.length; index++) {
+            const element = array[index]
             checkElement(element)
-        } else {
-            for (let index = 0; index < array.length; index++) {
-                const element = array[index]
-                checkElement(element)
-            }
         }
 
         return newHtml
     }
 
     async function checkElement(element) {
+        if (!element.getAttribute) {
+            const div = document.createElement("div")
+            div.innerHTML = element.textContent
+            element = div
+        }
         const str = element.innerHTML
         let attributes = element.getAttribute("subs") ? element.getAttribute("subs").split(',') : []
 
@@ -132,18 +133,24 @@
         }
     }
 
-    async function change(value, flip) {
-        variable = variable.replaceAll('<br><br>', '<div><br> </div>').replaceAll('<div><br></div>', '<div><br> </div>')
-        let line = null
-        const html = variable
-        if (!flip) {
-            const startPosition = getCaretPosition(generic)
-            const realPosition = await getRealPosition(html, startPosition)
-            line = realPosition[0]
-        }
+    async function removeNested() {
+        
+    }
 
-        variable = await htmlToMD(html, line)
+    async function change(value, flip) {
+        try {
+        const startPosition = getCaretPosition(generic)
+        variable = variable.replaceAll('<br><br>', '</div><div><br>').replaceAll('<div><br></div>', '<div><br> </div>')
+        const html = variable
+        const realPosition = await getRealPosition(html, startPosition)
+        // if (!flip) {
+        //     line = realPosition[0]
+        //     console.log(realPosition)
+        // }
+
+        variable = await htmlToMD(html)
         changesMade = true
+        } catch (err) {warning.errorCreate(err)}
     }
 
     async function save() {

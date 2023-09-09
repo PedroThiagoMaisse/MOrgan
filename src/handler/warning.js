@@ -18,4 +18,10 @@ async function removeWarning (id) {
     warnings.set(array)
 }
 
-export default {warnings, addWarning, removeWarning, array}
+async function errorCreate (value) {
+    const obj = {id: '600', text: value, level: 'error'}
+    array.push(obj)
+    warnings.set(array)
+}
+
+export default {warnings, addWarning, removeWarning, array, errorCreate}

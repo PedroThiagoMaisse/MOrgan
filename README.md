@@ -26,7 +26,6 @@ My personal day to day app
     - ~Avisar que as informações são salvas apenas localmente~
     - ~Opção para retirar os avisos~
     - ~Método externo para adicionar avisos~
-    - Conexão com o Handler de erros
     - Colocar task e notes padrões
     - Escrever em algum lugar os padrões aceitáveis para cada componente
     - Expor configs padrões para o router e pegar ela nas configs:
@@ -71,6 +70,10 @@ My personal day to day app
     
     - Mudar de p para uma tag de buttão-text
     - Resolver os bugs quando é passado de html para md
+        - ~Primeira linha não ser div~
+        - ~Criação de Divs multilinhas~
+        - ~MD não ta trocando kkk~
+        - Quando a pessoa apertar enter, salvar a posição do caret e trocar depois da func
     - UX/UI
     - Salvar a última data de modificação
     - Separar o quando o elemento é um sub repetido
@@ -109,6 +112,8 @@ My personal day to day app
 
 - Tasks *Gameficação*
 
+- Notes
+    - Melhorar o funcionamento
 ### release 3:
 
 - APKS
@@ -116,6 +121,12 @@ My personal day to day app
 ### release 4:
 
 - Login
+
+- Configurações
+    <details>
+    - Conexão com o Handler de erros
+    - Qualquer async que possa dar erro jogar aqui
+    </details>
 
 - Criar coldStorage (Geladeira)
     <details>
