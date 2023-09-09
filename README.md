@@ -68,13 +68,13 @@ My personal day to day app
     - ~Postar as informações só a cada x segundos~
     - ~Criar novos folders e textos~
     
-    - Mudar de p para uma tag de buttão-text
-    - Resolver os bugs quando é passado de html para md
+    - ~Mudar de p para uma tag de buttão-text~
+    - ~Resolver os bugs quando é passado de html para md~
         - ~Primeira linha não ser div~
         - ~Criação de Divs multilinhas~
         - ~MD não ta trocando kkk~
-        - Quando a pessoa apertar enter, salvar a posição do caret e trocar depois da func
-    - UX/UI
+        - ~Quando a pessoa apertar enter, salvar a posição do caret e trocar depois da func~
+    - ~UX/UI~
     - Salvar a última data de modificação
     - Separar o quando o elemento é um sub repetido
     </details>
@@ -113,6 +113,7 @@ My personal day to day app
 - Tasks *Gameficação*
 
 - Notes
+    - Adicionar o número de linhas do lado esquerdo
     - Melhorar o funcionamento
 ### release 3:
 

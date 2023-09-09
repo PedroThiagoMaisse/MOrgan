@@ -13,7 +13,7 @@
 <main> 
     {#each array as warning }
     <div>
-        <Basic level="{warning.level}" text="{warning.text}" id="{warning.id}"/> 
+        <Basic element="{warning}"/> 
     </div>
     {/each}
 </main>

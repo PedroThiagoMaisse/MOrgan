@@ -1,8 +1,7 @@
 import { writable } from 'svelte/store';
 
 let array = [
-    {level: 'warning', text: 'Não há DB conectado!', id: '2'},
-    {level: 'error', text: 'Não foi encontrando um método de Error-Handling', id: '1'}
+    {level: 'warning', title: 'Não há DB conectado!', text:  'As mudanças serão salvas localmente', id: '2'},
 ]
 const warnings = writable(array)
 

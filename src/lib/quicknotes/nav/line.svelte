@@ -40,12 +40,12 @@
         <div style="display: flex; position: relative">
             <div class="{element.id===selec? 'selected' : ''}" style="transform: translateX(-{n*13+16}px)"/>
             {#if element.type === 'folder'}
-                <p class="hover" on:click={() => changeOpenStatus(element)} > 
+                <button class="hover null" on:click={() => changeOpenStatus(element)} > 
                     {element.isOpen && unique ? '˅' : '>'} 
                     {element.name}
-                </p> 
+                </button> 
             {:else}
-                <p class="clickable" on:click={() => changeStatus(element.id)}> {element.name} </p>
+                <button class="clickable" on:click={() => changeStatus(element.id)}> {element.name} </button>
             {/if}
 
             <button class="cancel" on:click={() => dele(element.id)}> x </button>
@@ -69,8 +69,13 @@
 
     .clickable{
         color: #FFF;
+        font-size: 14px;
     }
 
+
+    .hover{
+        color: #CCC;
+    }
 
     .hover:hover{
         text-decoration: underline;
@@ -80,10 +85,13 @@
         text-decoration: underline;
         cursor: pointer;
     }
-p{
+
+button{
     padding: 6px 0px 8px 0px;
     line-height: 100%;
     margin: 0px;
+    background-color: transparent;
+    border-width: 0px;
 }
 
 .cancel{
@@ -104,6 +112,7 @@ main{
     width: 8px;
     border-width: 0px 0px 0px 1px;
     border-style: solid;
+    border-color: rgba(140, 140, 140, 0.5);
 }
 
 </style>

@@ -1,15 +1,15 @@
 <script>
-    export let text, level, id
+    export let element
     import warning from "../../handler/warning";
 
     function close () {
-        warning.removeWarning(id)
+        warning.removeWarning(element.id)
     }
 </script> 
 
-<button class="{level} null" on:click={close}>
-
-    {text}
+<button class="{element.level} null" on:click={close}>
+    <span style="font-weight: 1000;">{element.title}</span>
+    {element.text}
 
 </button>
 
@@ -21,16 +21,16 @@
 
     button{
         transition: 1s;
-        font-weight: 600;
+        font-weight: 500;
         border-style: solid;
         border-width: 0px 0px 0px 6px;
         border-radius: 0px;
         margin-bottom: 12px;
         /* border-width: 1px;
         border-style: solid; */
-        width: 120px;
+        width: 130px;
         padding: 8px;
-        font-size: 12px;
+        font-size: 10px;
         min-height: 50px;
     }
 

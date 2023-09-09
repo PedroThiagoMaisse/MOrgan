@@ -190,10 +190,9 @@
 <style>
     .textField{
         padding: 32px;
-        margin: 32px;
-        border-radius: 16px;
-        width: calc(100%);
-        height: calc(100% - 64pxx);
+        border-radius: 0px;
+        width: calc(100% + 64px);
+        height: calc(100% - 64px);
         background-color: #333;
     }
 
