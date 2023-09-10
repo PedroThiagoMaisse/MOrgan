@@ -10,7 +10,7 @@ import notesIcon from '../assets/icons/notes.svg'
 import config from '../lib/Config/Main.svelte'
 import settingsIcon from '../assets/icons/settings.svg'
 
-const selected = writable([0, 0])
+const selected = writable([0, 1])
 const routes = writable([])
 
 

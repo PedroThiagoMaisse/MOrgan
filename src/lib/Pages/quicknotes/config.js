@@ -2,7 +2,7 @@ import { coldStorage } from "../../../Stores/coldStorage"
 import {time} from "./shared"
 
 const notes = [
-        {name: 'Tutorial', type: 'folder', id: 'B01', data: [], parent: null },
+        {name: 'Tutorial', type: 'folder', id: 'B01', data: [], parent: '' },
         {name: 'Headers e Cores', type: 'file', id: 'B02', data: `<div># Título Principal</div><div>## Título secundário</div><div>### Título de secção</div><div>Texto Normal</div><div>! Vermelho</div><div>!! Verde</div>`, parent: 'B01'},
         {name: 'Lista', type: 'file', id: 'B03', data: `<div> - el </div>`, parent: 'B01'},
         {name: 'Decorações', type: 'file', id: 'B04', data: `<div>~ Rasurado ~</div><div>** Negrito **</div><div>* Itálico *</div><div> > BlockQuotes</div>`, parent: 'B01'},

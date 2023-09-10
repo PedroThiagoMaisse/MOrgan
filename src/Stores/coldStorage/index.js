@@ -18,6 +18,8 @@ function constructBranch(key, value) {
 
         put: function (array) {
             this.watcher.update((n) => n = array)
+            this.data = array
+            setCS()
         },
 
         post: function (Object) {

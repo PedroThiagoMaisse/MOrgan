@@ -107,6 +107,7 @@
 
     async function save() {
         const obj = {...r, data: variable}
+        console.log(obj)
         coldStorage.notes.patch(obj)
     }
 

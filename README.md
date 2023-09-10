@@ -15,11 +15,12 @@ My personal day to day app
     - ~Card~
     - ~Titles~
     - ~Text~
+    - Arrumar os elementos
     - Diálogos
     </details>
 
 
-- Configurações
+- ~Configurações~
     <details>
     - ~Criar avisinhos~
     - ~No caso da plataforma estar rodando dentro de um ambiente de dev, automaticamente puxar o componente de tester, ter uma opção nas configs para puxar isso
@@ -34,11 +35,11 @@ My personal day to day app
         - ~Gerar notes e tasks padrões~
         - ~Mudar o timing de html - md~
 
-    - Bug das notes
+    - ~Bug das notes~
     </details>
 
 
-- Organização
+- ~Organização~
     <details>
     - ~Better readme~
     - ~Limpar arquivos antigos~
@@ -78,7 +79,6 @@ My personal day to day app
         - ~MD não ta trocando kkk~
         - ~Quando a pessoa apertar enter, salvar a posição do caret e trocar depois da func~
     - ~UX/UI~
-    - Salvar a última data de modificação
     - Separar o quando o elemento é um sub repetido
     </details>
 
