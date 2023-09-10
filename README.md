@@ -47,7 +47,7 @@ My personal day to day app
     - ~Novas fotos e nome de pacote e no header do navegador~
     </details>
 
-- QuickNotes
+- ~QuickNotes~
     <details>
     - ~Object Reading Navbar~
     - ~Changing selected~
@@ -79,7 +79,7 @@ My personal day to day app
         - ~MD não ta trocando kkk~
         - ~Quando a pessoa apertar enter, salvar a posição do caret e trocar depois da func~
     - ~UX/UI~
-    - Separar o quando o elemento é um sub repetido
+    - ~Separar o quando o elemento é um sub repetido~
     </details>
 
 
@@ -107,6 +107,7 @@ My personal day to day app
 
 - Features
     - Juntar o router e o config em um só obj
+    - Criar doc para APIs (warning, coldStorage, router, config)
 
 - Projects
     <details>
@@ -119,6 +120,7 @@ My personal day to day app
 - Tasks *Gameficação*
 
 - Notes
+    - Mudar de style p/ tags
     - Adicionar o número de linhas do lado esquerdo
     - Melhorar o funcionamento
 ### release 3:

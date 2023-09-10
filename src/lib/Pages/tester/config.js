@@ -18,7 +18,6 @@ function flipTester() {
         routes.set(array)
     }
 
-    console.log(testerValid)
     testerValid = !testerValid
 }
 

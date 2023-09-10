@@ -15,16 +15,16 @@
     let changesMade = false
 
     const subArray = [
-            {tag: '#', style: {fontSize: '46px', fontWeight: '800'}},
-            {tag: '##', style: {fontSize: '36px', fontWeight: '800'}},
-            {tag: '###', style: {fontSize: '26px', fontWeight: '800'}},
-            {tag: '!', style: {color: 'red'}},
-            {tag: '!!', style: {color: 'green'}},
-            {tag: '~', style: {textDecorationColor: '#FAFAFA', textDecoration: 'line-through'}},
-            {tag: '**', style: {fontWeight: '1000'}},
-            {tag: '* ', style: {fontStyle: 'italic'}},
-            {tag: '&gt', style: {paddingLeft: '32px', backgroundColor: 'rgba(0,0,0, 0.3)'}},
-            {tag: '-', style: {listStyleType: 'circle', display: 'list-item', 'listStylePosition': 'inside', marginLeft: '32px'}},
+            {tag: '#', style: {fontSize: '46px', fontWeight: '800'}, func: (v) => {return (v.includes('#') && !v.includes('##'))}},
+            {tag: '##', style: {fontSize: '36px', fontWeight: '800'}, func: (v) => {return (v.includes('##') && !v.includes('###'))}},
+            {tag: '###', style: {fontSize: '26px', fontWeight: '800'}, func: (v) => {return (v.includes('###'))}},
+            {tag: '!', style: {color: 'red'}, func: (v) => {return (v.includes('!') && !v.includes('!!'))}},
+            {tag: '!!', style: {color: 'green'}, func: (v) => {return (v.includes('!!'))}},
+            {tag: '~', style: {textDecorationColor: '#FAFAFA', textDecoration: 'line-through'}, func: (v) => {return (v.includes('~'))}},
+            {tag: '**', style: {fontWeight: '1000'},func: (v) => {return (v.includes('**'))}},
+            {tag: '* ', style: {fontStyle: 'italic'}, func: (v) => {return ((v.includes('*') && !v.includes('**'))) || v.includes('***')}},
+            {tag: '&gt', style: {paddingLeft: '32px', backgroundColor: 'rgba(0,0,0, 0.3)'}, func: (v) => {return (v.includes('&gt'))}},
+            {tag: '-', style: {listStyleType: 'circle', display: 'list-item', 'listStylePosition': 'inside', marginLeft: '32px'}, func: (v) => {return (v.includes('-'))}},
         ]
 
     coldStorage.notes.subscribe(async (value) => {
@@ -73,19 +73,21 @@
         let attributes = element.getAttribute("subs") ? element.getAttribute("subs").split(',') : []
 
         attributes.forEach(att => {
-            if (!str.includes(att)) {
-                const filtered =  subArray.filter((value) => {return att == value.tag})
-                for (const [key, value] of Object.entries(filtered[0].style)) {
-                    element.style[key] = null
+            const f = subArray.filter((value) => {return att == value.tag})
+            if (f.length) {
+                if (!f[0].func(str)) {
+                    for (const [key, value] of Object.entries(f[0].style)) {
+                        element.style[key] = null
+                    }
+                    element.setAttribute("subs", attributes.join(',').replaceAll("," + f[0].tag, ''))
+                    attributes = element.getAttribute("subs") ? element.getAttribute("subs").split(',') : []
                 }
-                element.setAttribute("subs", attributes.join(',').replaceAll("," + filtered[0].tag, ''))
-                attributes = element.getAttribute("subs") ? element.getAttribute("subs").split(',') : []
-            }
-        });
+            } 
+        })
 
         for (let i = 0; i < subArray.length; i++) {
             const sub = subArray[i];
-            if (str.includes(sub.tag) && !attributes.includes(sub.tag)) {
+            if (sub.func(str)) {
                 for (const [key, value] of Object.entries(sub.style)) {
                     element.style[key] = value
                 }
@@ -107,7 +109,6 @@
 
     async function save() {
         const obj = {...r, data: variable}
-        console.log(obj)
         coldStorage.notes.patch(obj)
     }
 
