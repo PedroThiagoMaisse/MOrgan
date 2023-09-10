@@ -28,9 +28,9 @@ My personal day to day app
     - ~Método externo para adicionar avisos~
     - ~Novo padrão p/ botões de opções~
     - ~Colocar task e notes padrões~
-    - Método de mostrar o coisa de teste
+    - ~Método de mostrar o coisa de teste~
     - ~Escrever em algum lugar os padrões aceitáveis para cada componente~
-    - Expor configs padrões para o router e pegar ela nas configs:
+    - ~Expor configs padrões para o router e pegar ela nas configs:~
         - ~Gerar notes e tasks padrões~
         - ~Mudar o timing de html - md~
 
@@ -104,6 +104,9 @@ My personal day to day app
     </details>
 
 ### release 2:
+
+- Features
+    - Juntar o router e o config em um só obj
 
 - Projects
     <details>
