@@ -16,6 +16,10 @@ function constructBranch(key, value) {
             setCS()
         },
 
+        put: function (array) {
+            this.watcher.update((n) => n = array)
+        },
+
         post: function (Object) {
             this.watcher.update((n) => n = n.push({... Object, id: generateNextId(this.data)}))
             setCS()
@@ -50,6 +54,7 @@ function initiate() {
     for (let [key, value] of Object.entries(localStorage)) {
         value = JSON.parse(value)
         if (value.isCS) {
+            console.log(value)
             constructBranch(key, value)
         }
     }

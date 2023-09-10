@@ -3,6 +3,8 @@
     import Button from "./Parts/button.svelte";
     import Dialog from "./Parts/dialog.svelte";
     import Select from "./Parts/select.svelte";
+    import notes from '../Pages/quicknotes/config'
+    import planner from '../Pages/planner/config'
 
     let dialog = {}
     let show
@@ -13,13 +15,8 @@
     }
 
     const array = [
-        {   title: "Opções Gerais",
-            array: [
-                {type: 'selection',  text: 'vamos lá',  details: [0,1,2.5,5,10,15], func: (value) => {console.log(value)}},
-                {type: 'selection',  text: 'terceiro',  details: ['yes', 'no']    , func: (value) => {console.log(value)}},
-                {type: 'button',     text: 'testando',  details: 'KKKK',            func: () => {console.log('oi')}},
-            ]
-        }
+        notes,
+        planner
     ]
 
 </script>

@@ -1,7 +1,7 @@
 <script> 
     import { onMount, onDestroy } from "svelte";
     import Navbar from "./nav/Main.svelte";
-    import { selected } from "./shared"
+    import { selected, time } from "./shared"
     import { coldStorage, setCS } from '../../../Stores/coldStorage'
     import warning from "../../../Stores/warning";
 
@@ -10,6 +10,7 @@
     let variable = ''
     let generic = null
     let started = false
+    let t = 20
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     let changesMade = false
 
@@ -45,6 +46,10 @@
             }
         }
     });
+
+    time.subscribe(async (value) => {
+        t = value}
+    )
 
     async function htmlToMD (html, n) {
         let newHtml = html
@@ -107,7 +112,7 @@
 
     async function saveLoop() {
         while(started) {
-            await sleep(1500)
+            await sleep(t*1000)
             if (changesMade) {
                 save()
                 setCS()

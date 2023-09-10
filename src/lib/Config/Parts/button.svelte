@@ -4,6 +4,6 @@
 </script>
 
 <p class="label"> {element.text} </p>
-<button on:click="{ element.sudo ? element.func : ()=>{openWarning(element.func)}}">
+<button  class={element.sudo ? 'cancel' :  ''} on:click="{ element.sudo ? ()=>{openWarning(element.func)} : element.func}">
     {element.details}
 </button>
