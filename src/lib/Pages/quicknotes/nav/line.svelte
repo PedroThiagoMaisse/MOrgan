@@ -62,7 +62,7 @@
     .selected{
         position: absolute;
         top: 0px;
-        width: calc(180px + 32px);
+        width: calc(160px + 32px);
         height: 28px;
         background-color: rgba(255, 255, 255, 0.1);
     }

@@ -26,7 +26,9 @@ My personal day to day app
     - ~Avisar que as informações são salvas apenas localmente~
     - ~Opção para retirar os avisos~
     - ~Método externo para adicionar avisos~
+    - ~Novo padrão p/ botões de opções~
     - Colocar task e notes padrões
+    - Método de mostrar o coisa de teste
     - Escrever em algum lugar os padrões aceitáveis para cada componente
     - Expor configs padrões para o router e pegar ela nas configs:
         - Gerar notes e tasks padrões

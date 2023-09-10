@@ -28,7 +28,7 @@
         border-width: 0px 1px 0px 0px;
         border-style: solid;
         border-color: gray;
-        min-width: 180px;
+        min-width: 160px;
         height: 100%;
     }
 </style>
