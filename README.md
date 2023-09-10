@@ -4,7 +4,7 @@ My personal day to day app
 ## next steps
 
 ### release 1:
-- Criar um componente de test visual
+- ~Criar um componente de test visual~
     <details>
     - ~Input~
     - ~Select~
@@ -15,8 +15,8 @@ My personal day to day app
     - ~Card~
     - ~Titles~
     - ~Text~
-    - Arrumar os elementos
-    - Diálogos
+    - ~Arrumar os elementos~
+    - ~Diálogos~
     </details>
 
 
