@@ -83,7 +83,7 @@ My personal day to day app
     </details>
 
 
-- Planner
+- ~Planner~
     <details>
     - ~Show WeekBased - show what day of the week and entire week~
     - ~Show another week~
@@ -96,6 +96,7 @@ My personal day to day app
     - ~Generating ID on create~
     - ~show only availables for that day~
     - ~Good color when everything is completed~
+    DELAYED:
     - Mudar do padrão atual para real dates
         - Criar uma função para passar da realdate para um padrão legível (Deve ter algo já natural de js)
     - Organizar as funções
@@ -106,7 +107,10 @@ My personal day to day app
 ### release 2:
 
 - Features
-    - Juntar o router e o config em um só obj
+    - Font padrão (linkar ela)
+    - Melhorar a UI
+    - Nova img
+    - Juntar o router e o config em um só obj, lembrar tb dos dados padrões p/ login novo
     - Criar doc para APIs (warning, coldStorage, router, config)
 
 - Projects
@@ -118,12 +122,19 @@ My personal day to day app
     </details>
 
 - Tasks *Gameficação*
+    - Mudar do padrão atual para real dates
+        - Criar uma função para passar da realdate para um padrão legível (Deve ter algo já natural de js)
+    - Organizar as funções
+    - Tasks Unicas
+    - Limite de data p/ tasks
 
 - Notes
     - Mudar de style p/ tags
     - Adicionar o número de linhas do lado esquerdo
     - Melhorar o funcionamento
 ### release 3:
+
+- FrontPages
 
 - APKS
 

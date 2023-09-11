@@ -4,7 +4,7 @@ import { generateNextId } from './helper';
 const coldStorage = {}
 
 
-function constructBranch(key, value) {
+async function constructBranch(key, value) {
     coldStorage[key] = {
         isCS: true,
         data: value.data,
@@ -50,15 +50,46 @@ function constructBranch(key, value) {
 
     coldStorage[key].subscribe = coldStorage[key].watcher.subscribe
     setCS()
+
+    return true
 }
 
 function initiate() {
+    const array = [{title: 'Events', data: [ 
+        {
+            completedIn : [],
+            firstDate : "2023-09-10",
+            frequency : "D",
+            frequencyDetails: {},
+            id : "1", 
+            name : "Exemplo" 
+        }
+        ]}, {title: 'notes', data: [
+            {name: 'Tutorial', type: 'folder', id: 'B01', data: [], parent: '' },
+            {name: 'Headers e Cores', type: 'file', id: 'B02', data: `<div># Título Principal</div><div>## Título secundário</div><div>### Título de secção</div><div>Texto Normal</div><div>! Vermelho</div><div>!! Verde</div>`, parent: 'B01'},
+            {name: 'Lista', type: 'file', id: 'B03', data: `<div> - el </div>`, parent: 'B01'},
+            {name: 'Decorações', type: 'file', id: 'B04', data: `<div>~ Rasurado ~</div><div>** Negrito **</div><div>* Itálico *</div><div> > BlockQuotes</div>`, parent: 'B01'},
+            {name: 'Conexões', type: 'file', id: 'B05', data: `<div>! Ainda falta definir</div>`, parent: 'B01'},
+            {name: 'Play Code', type: 'file', id: 'B06', data: `<div>! Ainda falta definir</div>`, parent: 'B01'},
+        ]}]
+
     for (let [key, value] of Object.entries(localStorage)) {
+        try {
         value = JSON.parse(value)
         if (value.isCS) {
             constructBranch(key, value)
         }
+        } catch (err) {}
     }
+
+    array.forEach(element => {
+        if(!coldStorage[element.title]){
+            console.log(`creating ${element.title} with ${JSON.stringify(element.data)}}`)
+            constructBranch(element.title, [])
+            coldStorage[element.title].put(element.data)
+        }
+    });
+
 }
 
 initiate()

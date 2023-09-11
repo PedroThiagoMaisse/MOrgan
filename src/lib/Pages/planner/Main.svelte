@@ -69,7 +69,7 @@
         _dato = new Date(_dato[1]+'/'+_dato[0]+'/'+_dato[2])
         const EventsForTheDay = []
         const weekDays = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
-        const internEvents = JSON.parse(JSON.stringify(events))
+        const internEvents = events == undefined ? [] : JSON.parse(JSON.stringify(events))
         let completed = 0
         for (let index = 0; index < internEvents.length; index++) {
             const element = internEvents[index];
