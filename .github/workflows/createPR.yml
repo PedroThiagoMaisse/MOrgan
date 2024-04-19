@@ -1,0 +1,23 @@
+name: Create PR from Dev -> Main
+
+on:
+  push:
+    branches:
+      - dev
+      
+concurrency:
+  group: "deployment"
+  cancel-in-progress: true
+  
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: create pull request
+      run: gh pr create -B main -H dev --title 'Merge dev into main' --body 'Created by Github action'
+      env:
+          GITHUB_TOKEN: ${{ secrets.token }}
