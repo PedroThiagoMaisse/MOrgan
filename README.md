@@ -3,6 +3,7 @@ App pessoal para escrita / organização
 
 ## Próximos passos
 - Alterar para React
+    - ~Base~
     - Notes
     - Colocar a parte de config como modal
     - Tasks
